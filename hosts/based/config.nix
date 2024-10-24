@@ -12,7 +12,6 @@
   imports = [
     ./hardware.nix
     ./users.nix
-    # ../../modules/amd-drivers.nix
     ../../modules/intel-drivers.nix
     ../../modules/vm-guest-services.nix
     ../../modules/local-hardware-clock.nix
@@ -22,7 +21,6 @@
   boot = {
     # Kernel
     kernelPackages = pkgs.linuxPackages_latest;
-    #kernelPackages = pkgs.linuxPackages_zen;
 
     # This is for OBS Virtual Cam Support
     kernelModules = [ "v4l2loopback" ];
@@ -130,77 +128,7 @@
   };
 
   programs = {
-    firefox.enable = false;
     gamemode.enable = false;
-    starship = {
-      enable = true;
-      settings = {
-        add_newline = false;
-        buf = {
-          symbol = " ";
-        };
-        c = {
-          symbol = " ";
-        };
-        directory = {
-          read_only = " 󰌾";
-        };
-        docker_context = {
-          symbol = " ";
-        };
-        fossil_branch = {
-          symbol = " ";
-        };
-        git_branch = {
-          symbol = " ";
-        };
-        golang = {
-          symbol = " ";
-        };
-        hg_branch = {
-          symbol = " ";
-        };
-        hostname = {
-          ssh_symbol = " ";
-        };
-        lua = {
-          symbol = " ";
-        };
-        memory_usage = {
-          symbol = "󰍛 ";
-        };
-        meson = {
-          symbol = "󰔷 ";
-        };
-        nim = {
-          symbol = "󰆥 ";
-        };
-        nix_shell = {
-          symbol = " ";
-        };
-        nodejs = {
-          symbol = " ";
-        };
-        ocaml = {
-          symbol = " ";
-        };
-        package = {
-          symbol = "󰏗 ";
-        };
-        python = {
-          symbol = " ";
-        };
-        rust = {
-          symbol = " ";
-        };
-        swift = {
-          symbol = " ";
-        };
-        zig = {
-          symbol = " ";
-        };
-      };
-    };
     dconf.enable = true;
     seahorse.enable = false;
     fuse.userAllowOther = true;
@@ -208,13 +136,6 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-    };
-    virt-manager.enable = true;
-    steam = {
-      enable = false;
-      gamescopeSession.enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
     };
     thunar = {
       enable = true;
@@ -331,7 +252,6 @@
     timg
     flowtime
     mousam
-    victor-mono
     nixd
     freetube
     neovide
@@ -372,6 +292,7 @@
       font-awesome
       #symbola
       material-icons
+      victor-mono
     ];
   };
 
@@ -398,7 +319,6 @@
   };
 
   # Services to start
-
   services = {
     power-profiles-daemon.enable = false;
     tlp = {
@@ -406,17 +326,13 @@
       settings = {
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
         CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
         CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
         CPU_MIN_PERF_ON_AC = 0;
         CPU_MAX_PERF_ON_AC = 100;
         CPU_MIN_PERF_ON_BAT = 0;
         CPU_MAX_PERF_ON_BAT = 20;
-
-        #Optional helps save long term battery health
-        START_CHARGE_THRESH_BAT0 = 25; # 40 and bellow it starts to charge
+        START_CHARGE_THRESH_BAT0 = 25; # 25 and bellow it starts to charge
         STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
       };
     };
@@ -428,7 +344,6 @@
             (defsrc
               caps ret
             )
-
             (defalias 
               ;; tap caps lock as caps lock, hold caps lock as left control
               caps (tap-hold 200 200 caps lctl)
@@ -458,7 +373,6 @@
         options = "grp:win_space_toggle";
         variant = "";
       };
-      # videoDrivers = [ "intel" ];
     };
     greetd = {
       enable = true;
@@ -467,7 +381,6 @@
         default_session = {
           user = username;
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd startx";
-          # command = "${pkgs.greetd.tuigreet}/bin/tuigreet --sessions ${config.services.xserver.displayManager.sessionData.desktops}/share/xsessions:${config.services.xserver.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
         };
       };
     };
@@ -482,9 +395,6 @@
     flatpak.enable = true;
     printing = {
       enable = false;
-      drivers = [
-        # pkgs.hplipWithPlugin
-      ];
     };
     gnome.gnome-keyring.enable = true;
     avahi = {
@@ -537,9 +447,6 @@
   powerManagement = {
     powertop.enable = true;
   };
-
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
 
   # Security / Polkit
   security.rtkit.enable = true;
@@ -598,18 +505,10 @@
   hardware.graphics = {
     enable = true;
   };
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "23.11";
 }
