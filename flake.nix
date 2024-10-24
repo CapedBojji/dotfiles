@@ -55,7 +55,6 @@
     let
       system = "x86_64-linux";
       host = "based";
-      host2 = "dragneel";
       username = "cylis";
     in
     {
