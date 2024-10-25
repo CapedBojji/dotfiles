@@ -133,6 +133,9 @@ in
   stylix.targets.rofi.enable = false;
   # stylix.targets.hyprland.enable = false;
   stylix.targets.kde.enable = false;
+  stylix.targets.spicetify.enable = false;
+  stylix.targets.nvim.enable = false;
+  stylix.targets.tmux.enable = false;
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";
@@ -263,8 +266,17 @@ in
           keyboardShortcut
           shuffle
         ];
+        theme = {
+          name = "Retro";
+          src = pkgs.fetchFromGitHub {
+            owner = "Motschen";
+            repo = "Retroblur";
+            rev = "685cf3aea4ed1a4d82f687293f0efb5baa1aec06";
+            hash = "sha256-YAOmeSAxD0qR8Y7t+HOBoTCJtiJNfveJCmiptfg25OE=";
+          };
+        };
         # theme = spicePkgs.themes.catppuccin;
-        # colorScheme = "mocha";
+        # colorScheme = "macchiato";
       };
     wezterm = {
       enable = false;
@@ -279,7 +291,7 @@ in
                 "JetBrains Mono Nerd Font Mono",
           },
           font_size = 11.6,
-          color_scheme = "Catppuccin Mocha",
+          color_scheme = "Catppuccin Macchiato",
           hide_tab_bar_if_only_one_tab = true,
           enable_wayland = false,
         }
@@ -304,7 +316,7 @@ in
         bind % split-window -h -c "#{pane_current_path}"
         bind c new-window -c "#{pane_current_path}"
         #catppuccin setup + status line
-        set-option -g @catppuccin_flavour 'mocha'
+        set-option -g @catppuccin_flavour 'macchiato'
         set -g @catppuccin_window_left_separator ""
         set -g @catppuccin_window_right_separator " "
         set -g @catppuccin_window_middle_separator " █"
