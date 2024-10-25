@@ -11,16 +11,16 @@ send a notification specifying what happened.
 It's best to put this at the start of the file.
 --]]
 
-naughty.connect_signal("request::display_error",function (message,startup)
-      naughty.notification {
-        urgency = "critical",
-        title = "Error" .. (startup and " during startup!" or "!"),
-        message = message
-      }
+naughty.connect_signal("request::display_error", function(message, startup)
+	naughty.notification({
+		urgency = "critical",
+		title = "Error" .. (startup and " during startup!" or "!"),
+		message = message,
+	})
 end)
 
 -- Set Variables
-terminal = "wezterm"
+terminal = "ghostty"
 modkey = "Mod4"
 
 -- Load Modules
@@ -37,7 +37,7 @@ Layouts:
 tag.connect_signal("request::default_layouts", function()
 	awful.layout.append_default_layouts({
 		awful.layout.suit.tile,
-		awful.layout.suit.floating
+		awful.layout.suit.floating,
 	})
 end)
 
@@ -57,7 +57,7 @@ end)
 	This will focus clients when your mouse hovers over them.
 --]]
 client.connect_signal("mouse::enter", function(c)
-	c:activate { context = "mouse_enter", raise = false }
+	c:activate({ context = "mouse_enter", raise = false })
 end)
 
 --[[
@@ -65,8 +65,10 @@ end)
 	This puts new windows at the bottom of the stack
 	instead of replacing the master window.
 --]]
-client.connect_signal('manage', function(c)
-	if not awesome.startup then awful.client.setslave(c) end
+client.connect_signal("manage", function(c)
+	if not awesome.startup then
+		awful.client.setslave(c)
+	end
 	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
 		awful.placement.no_offscreen(c)
 	end
