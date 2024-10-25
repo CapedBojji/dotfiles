@@ -1,7 +1,8 @@
 {
   config,
   pkgs,
-  host2,
+  host,
+  inputs,
   username,
   options,
   ...
@@ -107,7 +108,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.hostName = host2;
+  networking.hostName = host;
   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
   # Set your time zone.
@@ -129,82 +130,7 @@
   };
 
   programs = {
-    #nix-ld = {
-    #enable = true;
-    #libraries = with pkgs; [
-    #];
-    #};
-    firefox.enable = false;
     gamemode.enable = true;
-    starship = {
-      enable = true;
-      settings = {
-        add_newline = false;
-        buf = {
-          symbol = " ";
-        };
-        c = {
-          symbol = " ";
-        };
-        directory = {
-          read_only = " 󰌾";
-        };
-        docker_context = {
-          symbol = " ";
-        };
-        fossil_branch = {
-          symbol = " ";
-        };
-        git_branch = {
-          symbol = " ";
-        };
-        golang = {
-          symbol = " ";
-        };
-        hg_branch = {
-          symbol = " ";
-        };
-        hostname = {
-          ssh_symbol = " ";
-        };
-        lua = {
-          symbol = " ";
-        };
-        memory_usage = {
-          symbol = "󰍛 ";
-        };
-        meson = {
-          symbol = "󰔷 ";
-        };
-        nim = {
-          symbol = "󰆥 ";
-        };
-        nix_shell = {
-          symbol = " ";
-        };
-        nodejs = {
-          symbol = " ";
-        };
-        ocaml = {
-          symbol = " ";
-        };
-        package = {
-          symbol = "󰏗 ";
-        };
-        python = {
-          symbol = " ";
-        };
-        rust = {
-          symbol = " ";
-        };
-        swift = {
-          symbol = " ";
-        };
-        zig = {
-          symbol = " ";
-        };
-      };
-    };
     dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;
@@ -291,20 +217,11 @@
     neovide
     greetd.tuigreet
     fzf
-    # spotube
-    yaml-language-server
-    vim-language-server
-    bash-language-server
-    lua-language-server
-    haskell-language-server
-    vscode-langservers-extracted
     zsh
     gamemode
     deluge-gtk
     zed-editor
     nixd
-    tmuxifier
-    ghc
     vivaldi
     vivaldi-ffmpeg-codecs
     nextcloud-client
@@ -313,38 +230,26 @@
     luajitPackages.luarocks
     cliphist
     scc
-    python3
-    love_0_10
     xorg.xev
     # wev
     pamixer
-    # scrcpy
-    # android-tools
     gimp
     inkscape
-    go
     vesktop
     obsidian
     gitleaks
     nvtopPackages.amd
-    scriptisto
     amberol
     obs-studio
     pass
     wezterm
-    zig
-    zls
-    lua54Packages.luacheck
-    pylint
     # rmpc
-    # texliveMedium
     xournal
     scrot
     zellij
     thefuck # Favorite package btw
     # aseprite
     # libresprite
-    gopls
     # redis
     exercism
     tldr
@@ -368,9 +273,6 @@
     soulseekqt
     yacreader
     ripgrep
-    nodejs_20
-    pnpm
-    netlify-cli
     lutgen
     betterbird
     fd
@@ -379,7 +281,6 @@
     timg
     flowtime
     mousam
-    victor-mono
     freetube
     anup
     libreoffice
@@ -391,19 +292,6 @@
     xwallpaper
     xbindkeys
     polybar
-    # silicon
-    # (st.overrideAttrs (oldAttrs: rec {
-    #   patches = [
-    #     (fetchpatch {
-    #       url = "https://st.suckless.org/patches/dracula/st-dracula-0.8.5.diff";
-    #       sha256 = "0ldy43y2xa8q54ci6ahxa3iimfb4hmjsbclkmisx0xjr88nazzhz";
-    #     })
-    #     (fetchpatch {
-    #       url = "https://st.suckless.org/patches/clipboard/st-clipboard-0.8.3.diff";
-    #       sha256 = "1h1nwilwws02h2lnxzmrzr69lyh6pwsym21hvalp9kmbacwy6p0g";
-    #     })
-    #   ];
-    # }))
     (emacsWithPackagesFromUsePackage {
       package = pkgs.emacsGit;
       config = ../../config/emacs/init.el;
@@ -452,21 +340,15 @@
         epkgs.perspective
         epkgs.rainbow-delimiters
         epkgs.tldr
-        # epkgs.cdlatex
-        # epkgs.auctex
         epkgs.zig-mode
         epkgs.lsp-mode
         epkgs.lsp-ui
         epkgs.lsp-treemacs
         epkgs.lsp-ivy
         epkgs.dap-mode
-        epkgs.helm-lsp
-        epkgs.yasnippet
         epkgs.carbon-now-sh
         epkgs.obsidian
         epkgs.go-mode
-        epkgs.emms
-        epkgs.emms-mode-line-cycle
       ];
     })
     #Awesome related
@@ -494,6 +376,7 @@
       font-awesome
       symbola
       material-icons
+      victor-mono
     ];
   };
 
@@ -520,12 +403,7 @@
   };
 
   # Services to start
-
   services = {
-    ollama = {
-      enable = false;
-      acceleration = "rocm";
-    };
     emacs.enable = true;
     kanata = {
       enable = true;
@@ -535,7 +413,6 @@
             (defsrc
               caps ret
             )
-
             (defalias 
               ;; tap caps lock as caps lock, hold caps lock as left control
               caps (tap-hold 200 200 caps lctl)
@@ -573,7 +450,6 @@
         default_session = {
           user = username;
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd startx";
-          #command = "${pkgs.greetd.tuigreet}/bin/tuigreet --sessions ${config.services.xserver.displayManager.sessionData.desktops}/share/xsessions:${config.services.xserver.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
         };
       };
     };
@@ -588,9 +464,6 @@
     flatpak.enable = true;
     printing = {
       enable = true;
-      drivers = [
-        # pkgs.hplipWithPlugin
-      ];
     };
     gnome.gnome-keyring.enable = true;
     avahi = {
@@ -635,17 +508,10 @@
     disabledDefaultBackends = [ "escl" ];
   };
 
-  # Extra Logitech Support
-  # hardware.logitech.wireless.enable = false;
-  # hardware.logitech.wireless.enableGraphical = false;
-
   # Bluetooth Support
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
-
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
 
   # Security / Polkit
   security.rtkit.enable = true;
@@ -696,6 +562,7 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   };
 
   # Virtualization / Containers
@@ -705,23 +572,14 @@
     dockerCompat = true;
     defaultNetwork.settings.dns_enabled = true;
   };
-
   # OpenGL
   hardware.graphics = {
     enable = true;
   };
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "23.11";
 }

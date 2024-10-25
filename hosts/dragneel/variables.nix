@@ -7,7 +7,7 @@
   extraMonitorSettings = "monitor=HDMI-A-2,1920x1080@75,auto,1";
 
   # Waybar Settings
-  clock24h = false;
+  clock24h = true;
 
   # Program Options
   browser = "vivaldi"; # Set Default Browser (google-chrome-stable for google-chrome)

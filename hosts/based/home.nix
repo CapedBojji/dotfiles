@@ -348,20 +348,12 @@ in
         continuum
       ];
     };
-    oh-my-posh = {
-      enable = false;
-      enableZshIntegration = false;
-    };
     gh.enable = true;
     btop = {
       enable = true;
       settings = {
         vim_keys = true;
       };
-    };
-    starship = {
-      enable = false;
-      package = pkgs.starship;
     };
     kitty = {
       enable = true;
@@ -452,8 +444,6 @@ in
 
         [[ ! -f ${../../config/.p10k.zsh} ]] || source ${../../config/.p10k.zsh}
         krabby random
-        # OMP
-        # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/dracula.omp.json)"
         zstyle ':completion:*:git-checkout:*' sort false
         zstyle ':completion:*:descriptions' format '[%d]'
         zstyle ':completion:*' list-colours ''${(s.:.)LS_COLORS}
