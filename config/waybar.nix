@@ -20,7 +20,9 @@ with lib;
       {
         layer = "top";
         position = "top";
-        modules-center = [ "hyprland/workspaces" ];
+        modules-center = [
+          "hyprland/workspaces"
+        ];
         modules-left = [
           "custom/startmenu"
           "pulseaudio"
