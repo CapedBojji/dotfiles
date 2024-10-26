@@ -128,7 +128,7 @@
   };
 
   programs = {
-    gamemode.enable = false;
+    gamemode.enable = true;
     dconf.enable = true;
     seahorse.enable = false;
     fuse.userAllowOther = true;
@@ -241,7 +241,6 @@
     zathura
     vlc
     qalculate-gtk
-    jdk
     yazi
     figlet
     ripgrep
@@ -260,14 +259,18 @@
     amberol
     anup
     libreoffice
+    rofi-pass
     lutris
     wine64
     wineWow64Packages.waylandFull
-    openpomodoro-cli
     ente-auth
     xwallpaper
     xbindkeys
     polybar
+    xwayland-satellite-unstable
+    whatsie
+    cloudflare-warp
+    stremio
     #Awesome related
     xorg.xprop
     xorg.xinit
@@ -288,11 +291,13 @@
   fonts = {
     packages = with pkgs; [
       noto-fonts-emoji
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       font-awesome
-      #symbola
+      symbola
       material-icons
       victor-mono
+      iosevka
+      maple-mono
     ];
   };
 
