@@ -129,13 +129,16 @@ in
   };
 
   # Styling Options
-  stylix.targets.waybar.enable = false;
-  stylix.targets.rofi.enable = false;
-  # stylix.targets.hyprland.enable = false;
-  stylix.targets.kde.enable = false;
-  stylix.targets.spicetify.enable = false;
-  stylix.targets.nvim.enable = false;
-  stylix.targets.tmux.enable = false;
+  stylix.targets = {
+    waybar.enable = false;
+    rofi.enable = false;
+    # hyprland.enable = false;
+    kde.enable = false;
+    spicetify.enable = false;
+    neovim.enable = false;
+    tmux.enable = false;
+  };
+
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";
