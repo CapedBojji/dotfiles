@@ -349,15 +349,14 @@
         main = {
           config = ''
             (defsrc
-              caps ret
+              caps ralt
             )
             (defalias 
               ;; tap caps lock as caps lock, hold caps lock as left control
               caps (tap-hold 200 200 caps lctl)
             )
-            (defalias enter (tap-hold 200 200 ret bspc))
             (deflayer base
-              @caps @enter
+              @caps bspc
             )
           '';
         };
@@ -411,7 +410,7 @@
     };
     ipp-usb.enable = true;
     syncthing = {
-      enable = false;
+      enable = true;
       user = "${username}";
       dataDir = "/home/${username}";
       configDir = "/home/${username}/.config/syncthing";
