@@ -231,7 +231,7 @@
     cliphist
     scc
     xorg.xev
-    # wev
+    wev
     pamixer
     gimp
     inkscape
@@ -243,7 +243,7 @@
     obs-studio
     pass
     wezterm
-    # rmpc
+    rmpc
     xournal
     scrot
     zellij
@@ -287,11 +287,15 @@
     lutris
     wine64
     wineWow65Packages.waylandFul
-    openpomodoro-cli
     ente-auth
     xwallpaper
     xbindkeys
     polybar
+    whatsie
+    xwayland-satellite-unstable
+    cloudflare-warp
+    stremio
+    rofi-pass
     (emacsWithPackagesFromUsePackage {
       package = pkgs.emacsGit;
       config = ../../config/emacs/init.el;
@@ -372,11 +376,13 @@
   fonts = {
     packages = with pkgs; [
       noto-fonts-emoji
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       font-awesome
       symbola
       material-icons
       victor-mono
+      iosevka
+      maple-mono
     ];
   };
 
