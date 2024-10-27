@@ -4,9 +4,9 @@
   programs = {
     rofi = {
       enable = true;
-      package = pkgs.rofi-wayland;
+      package = pkgs.rofi;
       extraConfig = {
-        modi = "drun,filebrowser,run";
+        modi = "drun,window,run,filebrowser";
         show-icons = true;
         icon-theme = "Papirus";
         location = 0;
@@ -15,8 +15,7 @@
         display-drun = " Apps";
         display-run = " Run";
         display-filebrowser = " File";
-        modes = [ "obsidian:rofi-obsidian" ];
-        combi-modes = [ "obsidian" ];
+        display-window = "Winodws";
       };
       theme =
         let

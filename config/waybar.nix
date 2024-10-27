@@ -114,6 +114,19 @@ with lib;
           };
           on-click = "sleep 0.1 && pavucontrol";
         };
+        "custom/playerctl" = {
+          format = "{icon}  <span>{}</span>";
+          return-type = "json";
+          max-length = 333;
+          exec = "playerctl -a metadata --format '{\"text\": \"{{artist}} ~ {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
+          on-click-middle = "playerctl play-pause";
+          on-click = "playerctl previous";
+          on-click-right = "playerctl next";
+          format-icons = {
+            Playing = "<span foreground='#98BB6C'></span>";
+            Paused = "<span foreground='#E46876'></span>";
+          };
+        };
         "custom/exit" = {
           tooltip = false;
           format = "";
