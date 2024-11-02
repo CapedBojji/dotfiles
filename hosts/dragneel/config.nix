@@ -300,6 +300,8 @@
     corectrl
     yt-dlp
     ytfzf
+    nushell
+    carapace
     (emacsWithPackagesFromUsePackage {
       package = pkgs.emacsGit;
       config = ../../config/emacs/init.el;

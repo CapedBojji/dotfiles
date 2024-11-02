@@ -273,6 +273,8 @@
     stremio
     yt-dlp
     ytfzf
+    nushell
+    carapace
     #Awesome related
     xorg.xprop
     xorg.xinit

@@ -22,10 +22,12 @@ in
         "gamemode"
         "uinput"
       ];
-      shell = pkgs.zsh;
+      shell = pkgs.nushell;
       ignoreShellProgramCheck = true;
-      packages = with pkgs; [
-      ];
+      packages =
+        with pkgs;
+        [
+        ];
     };
     # "newuser" = {
     #   homeMode = "755";

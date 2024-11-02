@@ -25,6 +25,7 @@ in
     # ../../config/swaync.nix
     # ../../config/waybar.nix
     ../../config/wlogout.nix
+    ../../config/starship/starship.nix
     inputs.jerry.homeManagerModules.default
     inputs.spicetify-nix.homeManagerModules.default
     inputs.nyaa.homeManagerModule
@@ -246,6 +247,12 @@ in
   };
 
   programs = {
+    atuin = {
+      enable = true;
+      settings = {
+        style = "compact";
+      };
+    };
     direnv = {
       enable = true;
       enableZshIntegration = true;
@@ -463,7 +470,7 @@ in
       initExtra = ''
         bindkey -e
 
-        [[ ! -f ${../../config/.p10k.zsh} ]] || source ${../../config/.p10k.zsh}
+        # [[ ! -f ${../../config/.p10k.zsh} ]] || source ${../../config/.p10k.zsh}
         krabby random
         # OMP
         # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/dracula.omp.json)"
@@ -477,6 +484,7 @@ in
         eval "$(fzf --zsh)"
         eval $(thefuck --alias)
         eval $(thefuck --alias tf)
+        eval $(starship init zsh)
         export MANPAGER='nvim +Man!'
       '';
       oh-my-zsh = {
@@ -507,11 +515,11 @@ in
           src = pkgs.zsh-syntax-highlighting;
           file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
         }
-        {
-          name = "powerlevel10k";
-          src = pkgs.zsh-powerlevel10k;
-          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-        }
+        # {
+        #   name = "powerlevel10k";
+        #   src = pkgs.zsh-powerlevel10k;
+        #   file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        # }
         {
           name = "fzf-tab";
           src = pkgs.zsh-fzf-tab;
