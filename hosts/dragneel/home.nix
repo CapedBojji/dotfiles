@@ -26,6 +26,7 @@ in
     # ../../config/waybar.nix
     ../../config/wlogout.nix
     ../../config/starship/starship.nix
+    ../../config/nushell.nix
     inputs.jerry.homeManagerModules.default
     inputs.spicetify-nix.homeManagerModules.default
     inputs.nyaa.homeManagerModule
@@ -247,15 +248,31 @@ in
   };
 
   programs = {
+    carapace = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
+    yazi = {
+      enable = true;
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
+    };
+    thefuck = {
+      enable = true;
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
+    };
     atuin = {
       enable = true;
       settings = {
         style = "compact";
       };
+      enableNushellIntegration = true;
     };
     direnv = {
       enable = true;
       enableZshIntegration = true;
+      enableNushellIntegration = true;
       nix-direnv.enable = true;
     };
     spicetify =
@@ -312,6 +329,7 @@ in
     zoxide = {
       enable = true;
       enableZshIntegration = true;
+      enableNushellIntegration = true;
       options = [ "--cmd cd" ];
     };
     tmux = {
@@ -482,9 +500,7 @@ in
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
         zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
         eval "$(fzf --zsh)"
-        eval $(thefuck --alias)
         eval $(thefuck --alias tf)
-        eval $(starship init zsh)
         export MANPAGER='nvim +Man!'
       '';
       oh-my-zsh = {
