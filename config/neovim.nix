@@ -17,11 +17,13 @@ in
       extraPackages = with pkgs; [
         # LSP
         vscode-langservers-extracted
-        nil
+        zls
         rust-analyzer
         yaml-language-server
         lua-language-server
         nixd
+        astro-language-server
+        elixir-ls
         # haskell-language-server
         gopls
         basedpyright
