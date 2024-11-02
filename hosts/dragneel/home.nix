@@ -445,6 +445,8 @@ in
         cmu = "cmus-remote -C 'update-cache -f'";
         nix-shell = "nix-shell --command zsh";
         nix-develop = "nix develop --command zsh";
+        ytmd = "yt-dlp --embed-metadata -x $(ytfzf -I l | grep 'https://')";
+        spotd = "spotdl download $1";
       };
       defaultKeymap = "emacs";
       history = {

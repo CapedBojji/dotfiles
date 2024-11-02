@@ -130,6 +130,7 @@
   };
 
   programs = {
+    nano.enable = false;
     gamemode.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
@@ -291,11 +292,14 @@
     xwallpaper
     xbindkeys
     polybar
-    whatsie
     xwayland-satellite-unstable
     cloudflare-warp
     stremio
     rofi-pass
+    factorio-headless
+    corectrl
+    yt-dlp
+    ytfzf
     (emacsWithPackagesFromUsePackage {
       package = pkgs.emacsGit;
       config = ../../config/emacs/init.el;
@@ -410,6 +414,7 @@
 
   # Services to start
   services = {
+    cloudflare-warp.enable = true;
     emacs.enable = true;
     kanata = {
       enable = true;

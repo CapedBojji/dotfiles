@@ -128,6 +128,7 @@
   };
 
   programs = {
+    nano.enable = false;
     gamemode.enable = true;
     dconf.enable = true;
     seahorse.enable = false;
@@ -268,9 +269,10 @@
     xbindkeys
     polybar
     xwayland-satellite-unstable
-    whatsie
     cloudflare-warp
     stremio
+    yt-dlp
+    ytfzf
     #Awesome related
     xorg.xprop
     xorg.xinit
@@ -325,6 +327,7 @@
 
   # Services to start
   services = {
+    cloudflare-warp.enable = true;
     power-profiles-daemon.enable = false;
     tlp = {
       enable = true;
