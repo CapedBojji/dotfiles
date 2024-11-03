@@ -178,7 +178,7 @@ with lib;
         "battery" = {
           states = {
             warning = 30;
-            critical = 20;
+            critical = 25;
           };
           format = "{icon} {capacity}%";
           format-charging = "󰂄 {capacity}%";

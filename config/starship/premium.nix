@@ -13,7 +13,7 @@ in
     format = "$symbol[󰅂](#b4befe) ";
   };
   format = ''
-     $directory$git_branch$git_state$git_commit
+    $directory$git_branch$git_state$git_commit
     $character
   '';
   palette = "catppuccin_${flavour}";

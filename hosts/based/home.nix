@@ -46,10 +46,6 @@ in
     source = ../../config/awesome;
     recursive = true;
   };
-  home.file.".config/cmus" = {
-    source = ../../config/cmus;
-    recursive = true;
-  };
   home.file.".config/ghostty" = {
     source = ../../config/ghostty;
     recursive = true;
