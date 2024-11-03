@@ -52,7 +52,7 @@
   # Styling Options
   stylix = {
     enable = true;
-    image = ../../config/wallpapers/japanese-purple.jpg;
+    image = ../../config/wallpapers/law.jpg;
     base16Scheme = {
       base00 = "272e33";
       base01 = "2e383c";

@@ -51,7 +51,7 @@ with lib;
           exec-once = nm-applet --indicator
           exec-once = blueman-applet
           exec-once = lxqt-policykit-agent
-          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/japanese-purple.jpg
+          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/law.jpg
           exec-once = playerctld daemon
           exec-once = mpDris2
           exec-once = wl-paste --type text --watch cliphist store
@@ -118,7 +118,7 @@ with lib;
             key_press_enables_dpms = false
           }
           animations {
-            enabled = yes
+            enabled = no
             bezier = wind, 0.05, 0.9, 0.1, 1.05
             bezier = winIn, 0.1, 1.1, 0.1, 1.1
             bezier = winOut, 0.3, -0.3, 0, 1

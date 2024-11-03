@@ -54,7 +54,7 @@
   # Styling Options
   stylix = {
     enable = true;
-    image = ../../config/wallpapers/japanese-purple.jpg;
+    image = ../../config/wallpapers/law.jpg;
     base16Scheme = {
       base00 = "1e1e2e"; # base
       base01 = "181825"; # mantle
