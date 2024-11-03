@@ -14,7 +14,7 @@
           owner = "awesomeWM";
           repo = "awesome";
           rev = "master";
-          hash = "sha256-CpieBypRPQ9h/RzWskvv/zSVbPPBHCWOIdrGBySBtlQ=";
+          hash = "sha256-P1AlGDvR/VMo7BDpP7XSgqnPlEeAz4YRG1OcqSNLM+Y=";
         };
         patches = [ ];
 

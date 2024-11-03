@@ -20,24 +20,18 @@
   ];
 
   boot = {
-    # Kernel
     kernelPackages = pkgs.linuxPackages_zen;
-    # This is for OBS Virtual Cam Support
     kernelModules = [ "v4l2loopback" ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
-    # Needed For Some Steam Games
     kernel.sysctl = {
       "vm.max_map_count" = 2147483642;
     };
-    # Bootloader.
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    # Make /tmp a tmpfs
     tmp = {
       useTmpfs = false;
       tmpfsSize = "30%";
     };
-    # Appimage Support
     binfmt.registrations.appimage = {
       wrapInterpreterInShell = false;
       interpreter = "${pkgs.appimage-run}/bin/appimage-run";
@@ -48,33 +42,13 @@
     };
     plymouth.enable = true;
   };
-
-  # Styling Options
   stylix = {
     enable = true;
     image = ../../config/wallpapers/beautifulmountainscape.jpg;
-    # base16Scheme = {
-    #   base00 = "232136";
-    #   base01 = "2a273f";
-    #   base02 = "393552";
-    #   base03 = "6e6a86";
-    #   base04 = "908caa";
-    #   base05 = "e0def4";
-    #   base06 = "e0def4";
-    #   base07 = "56526e";
-    #   base08 = "eb6f92";
-    #   base09 = "f6c177";
-    #   base0A = "ea9a97";
-    #   base0B = "3e8fb0";
-    #   base0C = "9ccfd8";
-    #   base0D = "c4a7e7";
-    #   base0E = "f6c177";
-    #   base0F = "56526e";
-    # };
     polarity = "dark";
     opacity.terminal = 0.8;
-    cursor.package = pkgs.bibata-cursors;
-    cursor.name = "Bibata-Modern-Ice";
+    cursor.package = pkgs.banana-cursor;
+    cursor.name = "Banana";
     cursor.size = 24;
     fonts = {
       monospace = {
@@ -98,7 +72,6 @@
     };
   };
 
-  # Extra Module Options
   drivers.amdgpu.enable = true;
   drivers.nvidia.enable = false;
   drivers.nvidia-prime = {
@@ -110,17 +83,13 @@
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
 
-  # Enable networking
   networking.networkmanager.enable = true;
   networking.hostName = host;
   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
-  # Set your time zone.
-  time.timeZone = "America/Chicago";
+  time.timeZone = "Asia/Karachi";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -132,7 +101,6 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-
   programs = {
     firefox.enable = false;
     starship = {
@@ -227,13 +195,10 @@
       ];
     };
   };
-
   nixpkgs.config.allowUnfree = true;
-
   users = {
     mutableUsers = true;
   };
-
   environment.systemPackages = with pkgs; [
     vim
     wget
@@ -309,7 +274,6 @@
     CYLISOS = "true";
   };
 
-  # Extra Portal Configuration
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -324,7 +288,6 @@
     ];
   };
 
-  # Services to start
   services = {
     xserver = {
       enable = false;
@@ -396,20 +359,10 @@
     disabledDefaultBackends = [ "escl" ];
   };
 
-  # Extra Logitech Support
-  hardware.logitech.wireless.enable = true;
-  hardware.logitech.wireless.enableGraphical = true;
-
-  # Bluetooth Support
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-
-  # Security / Polkit
   security.rtkit.enable = true;
   security.polkit.enable = true;
   security.polkit.extraConfig = ''
@@ -434,7 +387,6 @@
     '';
   };
 
-  # Optimization settings and garbage collection automation
   nix = {
     settings = {
       auto-optimise-store = true;
@@ -452,7 +404,6 @@
     };
   };
 
-  # Virtualization / Containers
   virtualisation.libvirtd.enable = true;
   virtualisation.podman = {
     enable = true;
@@ -460,11 +411,8 @@
     defaultNetwork.settings.dns_enabled = true;
   };
 
-  # OpenGL
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    # driSupport = true;
-    # driSupport32Bit = true;
   };
 
   # Open ports in the firewall.
@@ -473,11 +421,5 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "23.11";
 }
