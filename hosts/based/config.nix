@@ -54,22 +54,22 @@
     enable = true;
     image = ../../config/wallpapers/law.jpg;
     base16Scheme = {
-      base00 = "272e33";
-      base01 = "2e383c";
-      base02 = "414b50";
-      base03 = "859289";
-      base04 = "9da9a0";
-      base05 = "d3c6aa";
-      base06 = "edeada";
-      base07 = "fffbef";
-      base08 = "e67e80";
-      base09 = "e69875";
-      base0A = "dbbc7f";
-      base0B = "a7c080";
-      base0C = "83c092";
-      base0D = "7fbbb3";
-      base0E = "d699b6";
-      base0F = "9da9a0";
+      base00 = "1e1e2e"; # base
+      base01 = "181825"; # mantle
+      base02 = "313244"; # surface0
+      base03 = "45475a"; # surface1
+      base04 = "585b70"; # surface2
+      base05 = "cdd6f4"; # text
+      base06 = "f5e0dc"; # rosewater
+      base07 = "b4befe"; # lavender
+      base08 = "f38ba8"; # red
+      base09 = "fab387"; # peach
+      base0A = "f9e2af"; # yellow
+      base0B = "a6e3a1"; # green
+      base0C = "94e2d5"; # teal
+      base0D = "89b4fa"; # blue
+      base0E = "cba6f7"; # mauve
+      base0F = "f2cdcd"; # flamingo
     };
     polarity = "dark";
     opacity.terminal = 0.8;
@@ -91,7 +91,7 @@
       };
       sizes = {
         applications = 12;
-        terminal = 15;
+        terminal = 12;
         desktop = 11;
         popups = 12;
       };
@@ -275,6 +275,7 @@
     ytfzf
     nushell
     carapace
+    localsend
     #Awesome related
     xorg.xprop
     xorg.xinit
@@ -483,7 +484,7 @@
       }
     })
   '';
-  security.pam.services.swaylock = {
+  security.pam.services.hyprlock = {
     text = ''
       auth include login
     '';
@@ -516,14 +517,13 @@
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   };
 
-
   # OpenGL
   hardware.graphics = {
     enable = true;
   };
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 53317 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
   system.stateVersion = "23.11";
