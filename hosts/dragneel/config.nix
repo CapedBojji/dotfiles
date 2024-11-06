@@ -287,8 +287,8 @@
     libreoffice
     lutris
     wine64
-    wineWow65Packages.waylandFul
-    ente-auth
+    # wineWow64Packages.waylandFul
+    # ente-auth
     xwallpaper
     xbindkeys
     polybar

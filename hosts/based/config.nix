@@ -263,8 +263,8 @@
     rofi-pass
     lutris
     wine64
-    wineWow64Packages.waylandFull
-    ente-auth
+    # wineWow64Packages.waylandFull
+    # ente-auth
     xwallpaper
     xbindkeys
     polybar
