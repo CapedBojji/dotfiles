@@ -24,6 +24,7 @@ in
         nixd
         astro-language-server
         elixir-ls
+        harper
         # haskell-language-server
         gopls
         basedpyright

@@ -46,6 +46,32 @@ lspconfig.gopls.setup({
     },
   },
 })
+lspconfig.harper_ls.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    ["harper-ls"] = {
+      linters = {
+        spell_check = true,
+        spelled_numbers = true,
+        an_a = true,
+        sentence_capitalization = true,
+        unclosed_quotes = true,
+        wrong_quotes = true,
+        long_sentences = true,
+        repeated_words = true,
+        spaces = true,
+        matcher = true,
+        correct_number_suffix = true,
+        number_suffix_capitalization = true,
+        multiple_sequential_pronouns = true,
+        linking_verbs = true,
+        avoid_curses = false,
+        terminating_conjuctions = true,
+      },
+    },
+  },
+})
 
 lspconfig.html.setup({
   capabilities = capabilities,
