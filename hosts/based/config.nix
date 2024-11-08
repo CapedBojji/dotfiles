@@ -517,6 +517,8 @@
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   };
 
+  # Virtualization / Containers
+  virtualisation.libvirtd.enable = true;
   # OpenGL
   hardware.graphics = {
     enable = true;

@@ -24,6 +24,7 @@
       cmu = "cmus-remote -C 'update-cache -f'";
       nix-shell = "nix-shell --command nu";
       nix-develop = "nix develop --command nu";
+      oo = "cd /home/${username}/Documents/Main/";
     };
     extraConfig = ''
       $env.config = {

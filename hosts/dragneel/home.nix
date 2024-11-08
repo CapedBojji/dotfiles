@@ -173,6 +173,10 @@ in
       inherit username;
     })
     (import ../../scripts/web-search.nix { inherit pkgs; })
+    (import ../../scripts/obsidian-new.nix {
+      inherit pkgs;
+      inherit username;
+    })
     (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
     (import ../../scripts/screenshootin.nix { inherit pkgs; })
     (import ../../scripts/list-hypr-bindings.nix {
@@ -441,6 +445,7 @@ in
         ".." = "cd ..";
         host = "nvim ~/cylisos/hosts/${host}/";
         config = "nvim ~/cylisos/config/";
+        oo = "cd /home/${username}/Documents/Main/";
       };
     };
     zsh = {
@@ -472,6 +477,7 @@ in
         nix-develop = "nix develop --command zsh";
         ytmd = "yt-dlp --embed-metadata -x $(ytfzf -I l | grep 'https://')";
         spotd = "spotdl download $1";
+        oo = "cd /home/${username}/Documents/Main/";
       };
       defaultKeymap = "emacs";
       history = {
