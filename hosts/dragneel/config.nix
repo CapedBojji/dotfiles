@@ -462,7 +462,7 @@
       settings = {
         default_session = {
           user = username;
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd startx";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri";
         };
       };
     };

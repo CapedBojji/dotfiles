@@ -276,6 +276,8 @@
     nushell
     carapace
     localsend
+    gpodder
+    geany
     #Awesome related
     xorg.xprop
     xorg.xinit
@@ -397,7 +399,7 @@
       settings = {
         default_session = {
           user = username;
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd startx";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri";
         };
       };
     };
