@@ -3,7 +3,7 @@ local auto_session = require("auto-session")
 auto_session.setup({
 	auto_restore_enabled = true,
 	auto_save_enabled = true,
-	auto_session_suppress_dirs = { "~/", "~/Downloads", "~/Documents", "~/Desktop/" },
+	auto_session_suppress_dirs = { "~/", "~/Downloads", "~/Documents", "~/Documents/Main/" },
 })
 
 local keymap = vim.keymap

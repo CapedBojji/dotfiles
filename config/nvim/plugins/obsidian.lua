@@ -9,7 +9,7 @@ obsidian.setup({
 	notes_subdir = "01 - Rough Notes",
 	daily_notes = {
 		folder = "notes/dailies",
-		date_format = "%DD.%MM.%YYYY",
+		date_format = "%d.%mmm.%Y",
 		template = "Daily Note.md",
 	},
 	completion = {
@@ -17,24 +17,21 @@ obsidian.setup({
 		min_chars = 3,
 	},
 	mappings = {
-		-- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
 		["gf"] = {
 			action = function()
-				return obsidian.gf_passthrough()
+				return obsidian.util.gf_passthrough()
 			end,
 			opts = { noremap = false, expr = true, buffer = true },
 		},
-		-- Toggle check-boxes.
-		["<leader>ch"] = {
+		["<leader>oc"] = {
 			action = function()
-				return obsidian.toggle_checkbox()
+				return obsidian.util.toggle_checkbox()
 			end,
 			opts = { buffer = true },
 		},
-		-- Smart action depending on context, either follow link or toggle checkbox.
 		["<cr>"] = {
 			action = function()
-				return obsidian.smart_action()
+				return obsidian.util.smart_action()
 			end,
 			opts = { buffer = true, expr = true },
 		},
@@ -42,9 +39,8 @@ obsidian.setup({
 	new_notes_location = "01 - Rough Notes",
 	templates = {
 		folder = "06 - Templates",
-		date_format = "%DD.%MM.%YYYY",
-		time_format = "%HH.%MM",
-		-- A map for custom variables, the key should be the variable and the value a function
+		date_format = "%d.%mmm.%Y",
+		time_format = "%H.%M",
 		substitutions = {},
 	},
 	picker = {
@@ -97,3 +93,26 @@ obsidian.setup({
 		},
 	},
 })
+-- vim.keymap.set("n", "<leader>of", ":%s/^# \\d\\{2}-\\d\\{2}-\\d\\{4} - \\(\\w\\+\\)/# \\u\\1/<cr>", { desc = "Format Title" })
+vim.keymap.set("n", "<leader>of", ":%s/^# \\(\\w\\+\\)/# \\u\\1/<cr>", { desc = "Format Title" })
+vim.keymap.set("n", "<leader>on", ":ObsidianTemplate New Note<cr>", { desc = "Use New Note Template" })
+vim.keymap.set(
+	"n",
+	"<leader>ok",
+	":!mv '%:p' '/home/cylis/Documents/Main/04 - Main Notes'<cr>:bd<cr>",
+	{ desc = "Move Note to Main Notes" }
+)
+vim.keymap.set("n", "<leader>ot", ":!mv '%:p' '/home/cylis/Documents/Main/05 - Tags'<cr>:bd<cr>", { desc = "Move Tag" })
+vim.keymap.set("n", "<leader>odd", ":!rm '%:p'<cr>:bd<cr>", { desc = "Delete currently open file" })
+vim.keymap.set("n", "<leader>os", function()
+	require("telescope.builtin").find_files({
+		prompt_title = "Find Notes",
+		cwd = "~/Documents/Main/04 - Main Notes",
+	})
+end, { desc = "Find Note" })
+vim.keymap.set("n", "<leader>oz", function()
+	require("telescope.builtin").live_grep({
+		prompt_title = "Find in Notes",
+		cwd = "~/Documents/Main/04 - Main Notes",
+	})
+end, { desc = "Live grep in Notes" })

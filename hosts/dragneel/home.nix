@@ -446,6 +446,8 @@ in
         host = "nvim ~/cylisos/hosts/${host}/";
         config = "nvim ~/cylisos/config/";
         oo = "cd /home/${username}/Documents/Main/";
+        orv = "nvim '/home/${username}/Documents/Main/01 - Rough Notes/*.md'";
+        lz = "lazygit";
       };
     };
     zsh = {
@@ -478,6 +480,8 @@ in
         ytmd = "yt-dlp --embed-metadata -x $(ytfzf -I l | grep 'https://')";
         spotd = "spotdl download $1";
         oo = "cd /home/${username}/Documents/Main/";
+        orv = "nvim '/home/${username}/Documents/Main/01 - Rough Notes/*.md'";
+        lz = "lazygit";
       };
       defaultKeymap = "emacs";
       history = {

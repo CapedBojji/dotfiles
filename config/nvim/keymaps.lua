@@ -9,10 +9,11 @@ keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) --
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 keymap.set("n", "<leader>x", "<cmd>BufferLinePickClose<CR>", { desc = "Close current split" }) -- close current split window
-keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { desc = "Go Left"})
-keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", { desc = "Go Right"})
-keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", { desc = "Go Up"})
-keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", { desc = "Go Down"})
+keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { desc = "Go Left" })
+keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", { desc = "Go Right" })
+keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", { desc = "Go Up" })
+keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", { desc = "Go Down" })
 keymap.set("v", ">", ">gv", {})
 keymap.set("v", "<", "<gv", {})
-keymap.set("v", "<leader>sn", ":CarbonNow<CR>", { silent = true })
+keymap.set("n", "<C-d>", "<C-d>zz", { silent = true, desc = "Allow <C-d> and <C-u> to keep the cursor in the middle" })
+keymap.set("n", "<C-u>", "<C-u>zz", { silent = true, desc = "Allow C-d and C-u to keep the cursor in the middle" })
