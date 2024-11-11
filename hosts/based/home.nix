@@ -161,6 +161,11 @@ in
     (import ../../scripts/task-waybar.nix { inherit pkgs; })
     (import ../../scripts/battery.nix { inherit pkgs; })
     (import ../../scripts/proj.nix { inherit pkgs; })
+    (import ../../scripts/clip.nix { inherit pkgs; })
+    (import ../../scripts/startup.nix {
+      inherit pkgs;
+      inherit username;
+    })
     (import ../../scripts/wallsetter.nix {
       inherit pkgs;
       inherit username;
@@ -293,15 +298,16 @@ in
           keyboardShortcut
           shuffle
         ];
-        theme = {
-          name = "Retro";
-          src = pkgs.fetchFromGitHub {
-            owner = "Motschen";
-            repo = "Retroblur";
-            rev = "685cf3aea4ed1a4d82f687293f0efb5baa1aec06";
-            hash = "sha256-YAOmeSAxD0qR8Y7t+HOBoTCJtiJNfveJCmiptfg25OE=";
-          };
-        };
+        theme = spicePkgs.themes.nightlight;
+        # theme = {
+        #   name = "Retro";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "Motschen";
+        #     repo = "Retroblur";
+        #     rev = "685cf3aea4ed1a4d82f687293f0efb5baa1aec06";
+        #     hash = "sha256-YAOmeSAxD0qR8Y7t+HOBoTCJtiJNfveJCmiptfg25OE=";
+        #   };
+        # };
         # theme = spicePkgs.themes.catppuccin;
         # colorScheme = "macchiato";
       };
@@ -438,7 +444,7 @@ in
         host = "nvim ~/cylisos/hosts/${host}/";
         config = "nvim ~/cylisos/config/";
         oo = "cd /home/${username}/Documents/Main/";
-        orv = "nvim '/home/${username}/Documents/Main/01 - Rough Notes/*.md'";
+        orv = "nvim '/home/${username}/Documents/Main/01 - Rough Notes/'*";
         lz = "lazygit";
       };
     };
@@ -472,7 +478,7 @@ in
         ytmd = "yt-dlp --embed-metadata -x $(ytfzf -I l | grep 'https://')";
         spotd = "spotdl download $1";
         oo = "cd /home/${username}/Documents/Main/";
-        orv = "nvim '/home/${username}/Documents/Main/01 - Rough Notes/*.md'";
+        orv = "nvim '/home/${username}/Documents/Main/01 - Rough Notes/'*";
         lz = "lazygit";
       };
       defaultKeymap = "emacs";

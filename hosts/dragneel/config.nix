@@ -303,6 +303,10 @@
     nushell
     carapace
     localsend
+    gpodder
+    geany
+    waypaper
+    zoom-us
     (emacsWithPackagesFromUsePackage {
       package = pkgs.emacsGit;
       config = ../../config/emacs/init.el;

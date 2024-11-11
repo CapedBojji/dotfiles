@@ -39,7 +39,7 @@ obsidian.setup({
 	new_notes_location = "01 - Rough Notes",
 	templates = {
 		folder = "06 - Templates",
-		date_format = "%d.%mmm.%Y",
+		date_format = "%d.%b.%Y",
 		time_format = "%H.%M",
 		substitutions = {},
 	},
@@ -116,3 +116,15 @@ vim.keymap.set("n", "<leader>oz", function()
 		cwd = "~/Documents/Main/04 - Main Notes",
 	})
 end, { desc = "Live grep in Notes" })
+vim.keymap.set("n", "<leader>ors", function()
+	require("telescope.builtin").find_files({
+		prompt_title = "Find Notes",
+		cwd = "~/Documents/Main/01 - Rough Notes",
+	})
+end, { desc = "Find Note For Review" })
+vim.keymap.set("n", "<leader>orz", function()
+	require("telescope.builtin").live_grep({
+		prompt_title = "Find in Rough Notes",
+		cwd = "~/Documents/Main/01 - Rough Notes",
+	})
+end, { desc = "Live grep in Rough Notes" })

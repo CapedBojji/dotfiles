@@ -278,6 +278,9 @@
     localsend
     gpodder
     geany
+    waypaper
+    zoom-us
+    cliphist
     #Awesome related
     xorg.xprop
     xorg.xinit

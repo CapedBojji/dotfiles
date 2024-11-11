@@ -5,21 +5,16 @@ in
 {
   add_newline = false;
   character = {
-    success_symbol = "[](#cbced3)";
+    success_symbol = "[](bold green)";
     error_symbol = "[](#dd6777) ";
     vicmd_symbol = "[](#ecd3a0)";
     # format = "$symbol[ ](bold #b4befe) ";
     # format = "$symbol[λ ](bold #b4befe) ";
-    format = "$symbol[󰅂](#b4befe) ";
+    format = "$symbol[❯](bold blue) ";
   };
-  format = ''
-    $directory$git_branch$git_state$git_commit
-    $character
-  '';
+  format = "$directory$git_branch$git_commit\n$character";
   palette = "catppuccin_${flavour}";
-  right_format = ''
-    $all
-  '';
+  right_format = "$all";
   command_timeout = 2000;
   scan_timeout = 100;
   git_branch = {
@@ -84,7 +79,7 @@ in
     style = "bold yellow";
   };
   username = {
-    show_always = true;
+    show_always = false;
     format = "[ $user]($style) ";
     style_user = "bold bg:none fg:#7aa2f7";
   };

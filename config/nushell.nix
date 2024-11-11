@@ -25,7 +25,7 @@
       nix-shell = "nix-shell --command nu";
       nix-develop = "nix develop --command nu";
       oo = "cd /home/${username}/Documents/Main/";
-      orv = "nvim '/home/${username}/Documents/Main/01 - Rough Notes/*.md'";
+      orv = "nvim '/home/${username}/Documents/Main/01 - Rough Notes/'*";
       lz = "lazygit";
     };
     extraConfig = ''
