@@ -252,6 +252,7 @@ in
   };
 
   programs = {
+    tmux = import ../../config/tmux.nix { inherit pkgs; };
     carapace = {
       enable = true;
       enableNushellIntegration = true;
@@ -336,74 +337,6 @@ in
       enableZshIntegration = true;
       enableNushellIntegration = true;
       options = [ "--cmd cd" ];
-    };
-    tmux = {
-      enable = true;
-      disableConfirmationPrompt = true;
-      keyMode = "vi";
-      mouse = true;
-      baseIndex = 1;
-      prefix = "C-s";
-      extraConfig = ''
-        unbind r
-        bind r source-file ~/.config/tmux/tmux.conf
-        bind '"' split-window -c "#{pane_current_path}"
-        bind % split-window -h -c "#{pane_current_path}"
-        bind c new-window -c "#{pane_current_path}"
-        #catppuccin setup + status line
-        # set-option -g @catppuccin_flavour 'macchiato'
-        # set -g @catppuccin_window_left_separator ""
-        # set -g @catppuccin_window_right_separator " "
-        # set -g @catppuccin_window_middle_separator " █"
-        # set -g @catppuccin_window_number_position "right"
-        # set -g @catppuccin_window_default_fill "number"
-        # set -g @catppuccin_window_default_text "#W"
-        # set -g @catppuccin_window_current_fill "number"
-        # set -g @catppuccin_window_current_text "#W"
-        # set -g @catppuccin_status_modules_right "host session date_time"
-        # set -g @catppuccin_status_left_separator  " "
-        # set -g @catppuccin_status_right_separator ""
-        # set -g @catppuccin_status_fill "icon"
-        # set -g @catppuccin_status_connect_separator "no"
-        # set -g @catppuccin_directory_text "#{pane_current_path}"
-        set -g @tokyo-night-tmux_show_datetime 1
-        set -g @tokyo-night-tmux_date_format DMY
-        set -g @tokyo-night-tmux_time_format 24H
-        set -g @tokyo-night-tmux_show_battery_widget 1
-        set -g @tokyo-night-tmux_battery_name "BAT0"
-        set -g @tokyo-night-tmux_battery_low_threshold 25
-        set -g @tokyo-night-tmux_window_id_style hsquare
-        set -g @tokyo-night-tmux_show_path 0
-        set -g @tokyo-night-tmux_show_git 1
-
-        set-option -g @resurrect-strategy-nvim 'session'
-        bind-key -T copy-mode-vi v send-keys -X begin-selection
-        bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-        set-option -sa terminal-overrides ',xterm*:Tc'
-        set -g default-terminal "tmux"
-        set -g @resurrect-capture-pane-contents 'on'
-        set -g @continuum-restore 'on'
-        set-option -g status-position top
-        bind-key -n M-j previous-window
-        bind-key -n M-k next-window
-        bind-key -n M-h previous-window
-        bind-key -n M-l next-window
-        bind-key -n 'C-h' 'select-pane -L'
-        bind-key -n 'C-j' 'select-pane -D'
-        bind-key -n 'C-k' 'select-pane -U'
-        bind-key -n 'C-l' 'select-pane -R'
-        bind-key -n C-l send-keys 'C-l'
-      '';
-      plugins = with pkgs.tmuxPlugins; [
-        resurrect
-        catppuccin
-        tokyo-night-tmux
-        sensible
-        vim-tmux-navigator
-        yank
-        continuum
-      ];
     };
     gh.enable = true;
     btop = {

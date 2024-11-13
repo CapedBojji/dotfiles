@@ -84,7 +84,6 @@ in
         # nvim-dap-ui
       ];
       extraConfig = ''
-        set termguicolors
         set noemoji
         nnoremap : <cmd>FineCmdline<CR>
       '';
@@ -92,6 +91,7 @@ in
         ''
           ${builtins.readFile ./nvim/options.lua}
           ${builtins.readFile ./nvim/keymaps.lua}
+          ${builtins.readFile ./nvim/plugins/colorscheme.lua}
           ${builtins.readFile ./nvim/plugins/alpha.lua}
           ${builtins.readFile ./nvim/plugins/autopairs.lua}
           ${builtins.readFile ./nvim/plugins/auto-session.lua}
@@ -111,7 +111,6 @@ in
           require("ibl").setup()
           require("colorizer").setup()
           -- require("codeium").setup()
-          vim.cmd.colorscheme("tokyonight-storm")
         '';
     };
   };
