@@ -49,6 +49,7 @@ in
         mini-nvim
         obsidian-nvim
         catppuccin-nvim
+        tokyonight-nvim
         nvim-colorizer-lua
         alpha-nvim
         auto-session
@@ -89,7 +90,6 @@ in
       '';
       extraLuaConfig = # lua
         ''
-          ${builtins.readFile ./nvim/plugins/catppuccin.lua}
           ${builtins.readFile ./nvim/options.lua}
           ${builtins.readFile ./nvim/keymaps.lua}
           ${builtins.readFile ./nvim/plugins/alpha.lua}
@@ -111,6 +111,7 @@ in
           require("ibl").setup()
           require("colorizer").setup()
           -- require("codeium").setup()
+          vim.cmd.colorscheme("tokyonight-storm")
         '';
     };
   };

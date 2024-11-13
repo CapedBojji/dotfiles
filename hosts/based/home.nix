@@ -129,11 +129,12 @@ in
   stylix.targets = {
     waybar.enable = false;
     rofi.enable = false;
-    # hyprland.enable = false;
+    hyprland.enable = false;
     kde.enable = false;
     spicetify.enable = false;
     neovim.enable = false;
     tmux.enable = false;
+    vesktop.enable = false;
   };
 
   gtk = {
@@ -350,21 +351,30 @@ in
         bind % split-window -h -c "#{pane_current_path}"
         bind c new-window -c "#{pane_current_path}"
         #catppuccin setup + status line
-        set-option -g @catppuccin_flavour 'macchiato'
-        set -g @catppuccin_window_left_separator ""
-        set -g @catppuccin_window_right_separator " "
-        set -g @catppuccin_window_middle_separator " █"
-        set -g @catppuccin_window_number_position "right"
-        set -g @catppuccin_window_default_fill "number"
-        set -g @catppuccin_window_default_text "#W"
-        set -g @catppuccin_window_current_fill "number"
-        set -g @catppuccin_window_current_text "#W"
-        set -g @catppuccin_status_modules_right "host session date_time"
-        set -g @catppuccin_status_left_separator  " "
-        set -g @catppuccin_status_right_separator ""
-        set -g @catppuccin_status_fill "icon"
-        set -g @catppuccin_status_connect_separator "no"
-        set -g @catppuccin_directory_text "#{pane_current_path}"
+        # set-option -g @catppuccin_flavour 'macchiato'
+        # set -g @catppuccin_window_left_separator ""
+        # set -g @catppuccin_window_right_separator " "
+        # set -g @catppuccin_window_middle_separator " █"
+        # set -g @catppuccin_window_number_position "right"
+        # set -g @catppuccin_window_default_fill "number"
+        # set -g @catppuccin_window_default_text "#W"
+        # set -g @catppuccin_window_current_fill "number"
+        # set -g @catppuccin_window_current_text "#W"
+        # set -g @catppuccin_status_modules_right "host session date_time"
+        # set -g @catppuccin_status_left_separator  " "
+        # set -g @catppuccin_status_right_separator ""
+        # set -g @catppuccin_status_fill "icon"
+        # set -g @catppuccin_status_connect_separator "no"
+        # set -g @catppuccin_directory_text "#{pane_current_path}"
+        set -g @tokyo-night-tmux_show_datetime 1
+        set -g @tokyo-night-tmux_date_format DMY
+        set -g @tokyo-night-tmux_time_format 24H
+        set -g @tokyo-night-tmux_show_battery_widget 1
+        set -g @tokyo-night-tmux_battery_name "BAT0"
+        set -g @tokyo-night-tmux_battery_low_threshold 25
+        set -g @tokyo-night-tmux_window_id_style hsquare
+        set -g @tokyo-night-tmux_show_path 0
+        set -g @tokyo-night-tmux_show_git 1
 
         set-option -g @resurrect-strategy-nvim 'session'
         bind-key -T copy-mode-vi v send-keys -X begin-selection
@@ -388,6 +398,7 @@ in
       plugins = with pkgs.tmuxPlugins; [
         resurrect
         catppuccin
+        tokyo-night-tmux
         sensible
         vim-tmux-navigator
         yank
