@@ -475,6 +475,7 @@
         variant = "";
       };
     };
+    desktopManager.plasma6.enable = false;
     greetd = {
       enable = true;
       vt = 2;
@@ -505,7 +506,7 @@
     };
     ipp-usb.enable = true;
     syncthing = {
-      enable = false;
+      enable = true;
       user = "${username}";
       dataDir = "/home/${username}";
       configDir = "/home/${username}/.config/syncthing";
