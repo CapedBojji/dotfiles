@@ -56,22 +56,38 @@
     enable = true;
     image = ../../config/wallpapers/law.jpg;
     base16Scheme = {
-      base00 = "1e1e2e"; # base
-      base01 = "181825"; # mantle
-      base02 = "313244"; # surface0
-      base03 = "45475a"; # surface1
-      base04 = "585b70"; # surface2
-      base05 = "cdd6f4"; # text
-      base06 = "f5e0dc"; # rosewater
-      base07 = "b4befe"; # lavender
-      base08 = "f38ba8"; # red
-      base09 = "fab387"; # peach
-      base0A = "f9e2af"; # yellow
-      base0B = "a6e3a1"; # green
-      base0C = "94e2d5"; # teal
-      base0D = "89b4fa"; # blue
-      base0E = "cba6f7"; # mauve
-      base0F = "f2cdcd"; # flamingo
+      # base00 = "1e1e2e"; # base
+      # base01 = "181825"; # mantle
+      # base02 = "313244"; # surface0
+      # base03 = "45475a"; # surface1
+      # base04 = "585b70"; # surface2
+      # base05 = "cdd6f4"; # text
+      # base06 = "f5e0dc"; # rosewater
+      # base07 = "b4befe"; # lavender
+      # base08 = "f38ba8"; # red
+      # base09 = "fab387"; # peach
+      # base0A = "f9e2af"; # yellow
+      # base0B = "a6e3a1"; # green
+      # base0C = "94e2d5"; # teal
+      # base0D = "89b4fa"; # blue
+      # base0E = "cba6f7"; # mauve
+      # base0F = "f2cdcd"; # flamingo
+      base00 = "24283B";
+      base01 = "16161E";
+      base02 = "343A52";
+      base03 = "444B6A";
+      base04 = "787C99";
+      base05 = "A9B1D6";
+      base06 = "CBCCD1";
+      base07 = "D5D6DB";
+      base08 = "C0CAF5";
+      base09 = "A9B1D6";
+      base0A = "0DB9D7";
+      base0B = "9ECE6A";
+      base0C = "B4F9F8";
+      base0D = "2AC3DE";
+      base0E = "BB9AF7";
+      base0F = "F7768E";
     };
     polarity = "dark";
     opacity.terminal = 0.8;
@@ -275,7 +291,6 @@
     yacreader
     ripgrep
     lutgen
-    betterbird
     fd
     spotify
     sshfs
@@ -307,65 +322,65 @@
     geany
     waypaper
     zoom-us
-    (emacsWithPackagesFromUsePackage {
-      package = pkgs.emacsGit;
-      config = ../../config/emacs/init.el;
-      extraEmacsPackages = epkgs: [
-        epkgs.use-package
-        epkgs.evil
-        epkgs.evil-collection
-        epkgs.evil-tutor
-        epkgs.general
-        epkgs.which-key
-        epkgs.toc-org
-        epkgs.org-bullets
-        epkgs.sudo-edit
-        epkgs.all-the-icons
-        epkgs.all-the-icons-dired
-        epkgs.counsel
-        epkgs.ivy
-        epkgs.ivy-rich
-        epkgs.all-the-icons-ivy-rich
-        epkgs.elcord
-        epkgs.eshell-syntax-highlighting
-        epkgs.vterm
-        epkgs.vterm-toggle
-        epkgs.catppuccin-theme
-        epkgs.rainbow-mode
-        epkgs.company
-        epkgs.company-box
-        epkgs.dashboard
-        epkgs.diminish
-        epkgs.flycheck
-        epkgs.lua-mode
-        epkgs.nix-mode
-        epkgs.haskell-mode
-        epkgs.projectile
-        epkgs.eshell-toggle
-        epkgs.dired-open
-        epkgs.peep-dired
-        epkgs.neotree
-        epkgs.doom-themes
-        epkgs.doom-modeline
-        epkgs.elfeed
-        epkgs.elfeed-goodies
-        epkgs.git-timemachine
-        epkgs.magit
-        epkgs.hl-todo
-        epkgs.perspective
-        epkgs.rainbow-delimiters
-        epkgs.tldr
-        epkgs.zig-mode
-        epkgs.lsp-mode
-        epkgs.lsp-ui
-        epkgs.lsp-treemacs
-        epkgs.lsp-ivy
-        epkgs.dap-mode
-        epkgs.carbon-now-sh
-        epkgs.obsidian
-        epkgs.go-mode
-      ];
-    })
+    # (emacsWithPackagesFromUsePackage {
+    #   package = pkgs.emacsGit;
+    #   config = ../../config/emacs/init.el;
+    #   extraEmacsPackages = epkgs: [
+    #     epkgs.use-package
+    #     epkgs.evil
+    #     epkgs.evil-collection
+    #     epkgs.evil-tutor
+    #     epkgs.general
+    #     epkgs.which-key
+    #     epkgs.toc-org
+    #     epkgs.org-bullets
+    #     epkgs.sudo-edit
+    #     epkgs.all-the-icons
+    #     epkgs.all-the-icons-dired
+    #     epkgs.counsel
+    #     epkgs.ivy
+    #     epkgs.ivy-rich
+    #     epkgs.all-the-icons-ivy-rich
+    #     epkgs.elcord
+    #     epkgs.eshell-syntax-highlighting
+    #     epkgs.vterm
+    #     epkgs.vterm-toggle
+    #     epkgs.catppuccin-theme
+    #     epkgs.rainbow-mode
+    #     epkgs.company
+    #     epkgs.company-box
+    #     epkgs.dashboard
+    #     epkgs.diminish
+    #     epkgs.flycheck
+    #     epkgs.lua-mode
+    #     epkgs.nix-mode
+    #     epkgs.haskell-mode
+    #     epkgs.projectile
+    #     epkgs.eshell-toggle
+    #     epkgs.dired-open
+    #     epkgs.peep-dired
+    #     epkgs.neotree
+    #     epkgs.doom-themes
+    #     epkgs.doom-modeline
+    #     epkgs.elfeed
+    #     epkgs.elfeed-goodies
+    #     epkgs.git-timemachine
+    #     epkgs.magit
+    #     epkgs.hl-todo
+    #     epkgs.perspective
+    #     epkgs.rainbow-delimiters
+    #     epkgs.tldr
+    #     epkgs.zig-mode
+    #     epkgs.lsp-mode
+    #     epkgs.lsp-ui
+    #     epkgs.lsp-treemacs
+    #     epkgs.lsp-ivy
+    #     epkgs.dap-mode
+    #     epkgs.carbon-now-sh
+    #     epkgs.obsidian
+    #     epkgs.go-mode
+    #   ];
+    # })
     #Awesome related
     xorg.xprop
     xorg.xinit
@@ -422,7 +437,7 @@
   # Services to start
   services = {
     cloudflare-warp.enable = true;
-    emacs.enable = true;
+    emacs.enable = false;
     kanata = {
       enable = true;
       keyboards = {

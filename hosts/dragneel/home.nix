@@ -16,14 +16,14 @@ in
 
   # Import Program Configurations
   imports = [
-    # ../../config/emoji.nix
-    # ../../config/hyprland.nix
+    ../../config/emoji.nix
+    ../../config/hyprland.nix
     ../../config/neovim.nix
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix
-    # ../../config/swaync.nix
-    # ../../config/waybar.nix
+    ../../config/swaync.nix
+    ../../config/waybar.nix
     ../../config/wlogout.nix
     ../../config/starship/starship.nix
     ../../config/nushell.nix
@@ -43,10 +43,6 @@ in
   };
   home.file.".config/awesome" = {
     source = ../../config/awesome;
-    recursive = true;
-  };
-  home.file.".config/cmus" = {
-    source = ../../config/cmus;
     recursive = true;
   };
   home.file.".config/ghostty" = {
@@ -137,11 +133,12 @@ in
   stylix.targets = {
     waybar.enable = false;
     rofi.enable = false;
-    # hyprland.enable = false;
+    hyprland.enable = false;
     kde.enable = false;
     spicetify.enable = false;
     neovim.enable = false;
     tmux.enable = false;
+    vesktop.enable = false;
   };
   gtk = {
     iconTheme = {
@@ -342,65 +339,7 @@ in
       enableNushellIntegration = true;
       options = [ "--cmd cd" ];
     };
-    tmux = {
-      enable = true;
-      disableConfirmationPrompt = true;
-      keyMode = "vi";
-      mouse = true;
-      baseIndex = 1;
-      prefix = "C-s";
-      extraConfig = ''
-        unbind r
-        bind r source-file ~/.config/tmux/tmux.conf
-        bind '"' split-window -c "#{pane_current_path}"
-        bind % split-window -h -c "#{pane_current_path}"
-        bind c new-window -c "#{pane_current_path}"
-        set-option -sa terminal-overrides ',xterm*:Tc'
-        set -g @resurrect-capture-pane-contents 'on'
-        set -g @continuum-restore 'on'
-        set-option -g status-position top
-        bind-key -n M-j previous-window
-        bind-key -n M-k next-window
-        bind-key -n M-h previous-window
-        bind-key -n M-l next-window
-        bind-key -n 'C-h' 'select-pane -L'
-        bind-key -n 'C-j' 'select-pane -D'
-        bind-key -n 'C-k' 'select-pane -U'
-        bind-key -n 'C-l' 'select-pane -R'
-        bind-key -n C-l send-keys 'C-l'
-
-        #catppuccin setup + status line
-        set-option -g @catppuccin_flavour 'macchiato'
-        set -g @catppuccin_window_left_separator ""
-        set -g @catppuccin_window_right_separator " "
-        set -g @catppuccin_window_middle_separator " █"
-        set -g @catppuccin_window_number_position "right"
-        set -g @catppuccin_window_default_fill "number"
-        set -g @catppuccin_window_default_text "#W"
-        set -g @catppuccin_window_current_fill "number"
-        set -g @catppuccin_window_current_text "#W"
-        set -g @catppuccin_status_modules_right "host session date_time"
-        set -g @catppuccin_status_left_separator  " "
-        set -g @catppuccin_status_right_separator ""
-        set -g @catppuccin_status_fill "icon"
-        set -g @catppuccin_status_connect_separator "no"
-        set -g @catppuccin_directory_text "#{pane_current_path}"
-
-        set-option -g @resurrect-strategy-nvim 'session'
-        bind-key -T copy-mode-vi v send-keys -X begin-selection
-        bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-        set -g default-terminal "tmux"
-      '';
-      plugins = with pkgs.tmuxPlugins; [
-        resurrect
-        catppuccin
-        sensible
-        vim-tmux-navigator
-        yank
-        continuum
-      ];
-    };
+    tmux = import ../../config/tmux.nix { inherit pkgs; };
     gh.enable = true;
     btop = {
       enable = true;

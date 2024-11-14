@@ -70,7 +70,7 @@ in
     set -g @tokyo-night-tmux_show_path 0
     set -g @tokyo-night-tmux_show_git 1
 
-    # run-shell ${tokyo-night}/share/tmux-plugins/tokyo-night/tokyo-night.tmux
+    run-shell ${tokyo-night}/share/tmux-plugins/tokyo-night/tokyo-night.tmux
 
     # Settings
     set-option -g @resurrect-strategy-nvim 'session'

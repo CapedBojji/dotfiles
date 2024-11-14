@@ -277,7 +277,7 @@ with lib;
         #custom-hyprbindings, #network, #battery,
         #custom-notification, #tray, #custom-exit {
           font-weight: bold;
-          background: #${config.stylix.base16Scheme.base07};
+          background: #${config.stylix.base16Scheme.base09};
           color: #${config.stylix.base16Scheme.base00};
           margin: 4px 0px;
           margin-right: 7px;
