@@ -19,16 +19,11 @@ in
         "libvirtd"
         "scanner"
         "lp"
-        "gamemode"
-        "uinput"
-        "video"
       ];
-      shell = pkgs.nushell;
+      shell = pkgs.bash;
       ignoreShellProgramCheck = true;
-      packages =
-        with pkgs;
-        [
-        ];
+      packages = with pkgs; [
+      ];
     };
     # "newuser" = {
     #   homeMode = "755";

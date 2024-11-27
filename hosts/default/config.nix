@@ -72,8 +72,8 @@
     };
   };
 
-  drivers.amdgpu.enable = true;
-  drivers.nvidia.enable = false;
+  drivers.amdgpu.enable = false;
+  drivers.nvidia.enable = true;
   drivers.nvidia-prime = {
     enable = false;
     intelBusID = "";
@@ -87,7 +87,7 @@
   networking.hostName = host;
   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
-  time.timeZone = "Asia/Karachi";
+  time.timeZone = "America/NewYork";
 
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {

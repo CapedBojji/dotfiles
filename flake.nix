@@ -53,7 +53,7 @@
     let
       system = "x86_64-linux";
       host = "based";
-      username = "cylis";
+      username = "kingfloch";
     in
     {
       nixosConfigurations = {

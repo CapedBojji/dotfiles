@@ -4,7 +4,6 @@
   host,
   username,
   options,
-  inputs,
   ...
 }:
 
@@ -12,32 +11,27 @@
   imports = [
     ./hardware.nix
     ./users.nix
+    ../../modules/amd-drivers.nix
+    ../../modules/nvidia-drivers.nix
+    ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
     ../../modules/vm-guest-services.nix
     ../../modules/local-hardware-clock.nix
-    ../../modules/overlays.nix
   ];
 
   boot = {
-    # Kernel
-    kernelPackages = pkgs.linuxPackages_latest;
-
-    # This is for OBS Virtual Cam Support
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = [ "v4l2loopback" ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
-    # Needed For Some Steam Games
     kernel.sysctl = {
       "vm.max_map_count" = 2147483642;
     };
-    # Bootloader.
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    # Make /tmp a tmpfs
     tmp = {
       useTmpfs = false;
       tmpfsSize = "30%";
     };
-    # Appimage Support
     binfmt.registrations.appimage = {
       wrapInterpreterInShell = false;
       interpreter = "${pkgs.appimage-run}/bin/appimage-run";
@@ -48,45 +42,9 @@
     };
     plymouth.enable = true;
   };
-
-  # Styling Options
   stylix = {
     enable = true;
-    image = ../../config/wallpapers/law.jpg;
-    base16Scheme = {
-      # base00 = "1e1e2e"; # base
-      # base01 = "181825"; # mantle
-      # base02 = "313244"; # surface0
-      # base03 = "45475a"; # surface1
-      # base04 = "585b70"; # surface2
-      # base05 = "cdd6f4"; # text
-      # base06 = "f5e0dc"; # rosewater
-      # base07 = "b4befe"; # lavender
-      # base08 = "f38ba8"; # red
-      # base09 = "fab387"; # peach
-      # base0A = "f9e2af"; # yellow
-      # base0B = "a6e3a1"; # green
-      # base0C = "94e2d5"; # teal
-      # base0D = "89b4fa"; # blue
-      # base0E = "cba6f7"; # mauve
-      # base0F = "f2cdcd"; # flamingo
-      base00 = "24283B";
-      base01 = "16161E";
-      base02 = "343A52";
-      base03 = "444B6A";
-      base04 = "787C99";
-      base05 = "A9B1D6";
-      base06 = "CBCCD1";
-      base07 = "D5D6DB";
-      base08 = "C0CAF5";
-      base09 = "A9B1D6";
-      base0A = "0DB9D7";
-      base0B = "9ECE6A";
-      base0C = "B4F9F8";
-      base0D = "2AC3DE";
-      base0E = "BB9AF7";
-      base0F = "F7768E";
-    };
+    image = ../../config/wallpapers/beautifulmountainscape.jpg;
     polarity = "dark";
     opacity.terminal = 0.8;
     cursor.package = pkgs.banana-cursor;
@@ -107,30 +65,31 @@
       };
       sizes = {
         applications = 12;
-        terminal = 12;
+        terminal = 15;
         desktop = 11;
         popups = 12;
       };
     };
   };
 
-  # Extra Module Options
-  # drivers.amdgpu.enable = false;
-  drivers.intel.enable = true;
+  drivers.amdgpu.enable = false;
+  drivers.nvidia.enable = true;
+  drivers.nvidia-prime = {
+    enable = false;
+    intelBusID = "";
+    nvidiaBusID = "";
+  };
+  drivers.intel.enable = false;
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
 
-  # Enable networking
   networking.networkmanager.enable = true;
   networking.hostName = host;
   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
-  # Set your time zone.
-  time.timeZone = "Asia/Karachi";
+  time.timeZone = "America/NewYork";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -142,17 +101,91 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-
   programs = {
-    nano.enable = false;
-    gamemode.enable = true;
+    firefox.enable = false;
+    starship = {
+      enable = true;
+      settings = {
+        add_newline = false;
+        buf = {
+          symbol = " ";
+        };
+        c = {
+          symbol = " ";
+        };
+        directory = {
+          read_only = " 󰌾";
+        };
+        docker_context = {
+          symbol = " ";
+        };
+        fossil_branch = {
+          symbol = " ";
+        };
+        git_branch = {
+          symbol = " ";
+        };
+        golang = {
+          symbol = " ";
+        };
+        hg_branch = {
+          symbol = " ";
+        };
+        hostname = {
+          ssh_symbol = " ";
+        };
+        lua = {
+          symbol = " ";
+        };
+        memory_usage = {
+          symbol = "󰍛 ";
+        };
+        meson = {
+          symbol = "󰔷 ";
+        };
+        nim = {
+          symbol = "󰆥 ";
+        };
+        nix_shell = {
+          symbol = " ";
+        };
+        nodejs = {
+          symbol = " ";
+        };
+        ocaml = {
+          symbol = " ";
+        };
+        package = {
+          symbol = "󰏗 ";
+        };
+        python = {
+          symbol = " ";
+        };
+        rust = {
+          symbol = " ";
+        };
+        swift = {
+          symbol = " ";
+        };
+        zig = {
+          symbol = " ";
+        };
+      };
+    };
     dconf.enable = true;
-    seahorse.enable = false;
+    seahorse.enable = true;
     fuse.userAllowOther = true;
     mtr.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+    };
+    virt-manager.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
     };
     thunar = {
       enable = true;
@@ -162,13 +195,10 @@
       ];
     };
   };
-
   nixpkgs.config.allowUnfree = true;
-
   users = {
     mutableUsers = true;
   };
-
   environment.systemPackages = with pkgs; [
     vim
     wget
@@ -179,6 +209,7 @@
     lolcat
     fastfetch
     htop
+    brave
     libvirt
     lxqt.lxqt-policykit
     lm_sensors
@@ -189,11 +220,11 @@
     ydotool
     duf
     ncdu
+    wl-clipboard
     pciutils
-    ffmpeg-full
+    ffmpeg
     socat
-    pokemonsay
-    krabby
+    cowsay
     ripgrep
     lshw
     bat
@@ -211,119 +242,30 @@
     playerctl
     nh
     nixfmt-rfc-style
+    discord
     libvirt
     swww
     grim
     slurp
-    file-roller
+    gnome.file-roller
     swaynotificationcenter
     imv
     mpv
+    gimp
     pavucontrol
     tree
-    greetd.tuigreet
-    fzf
-    zsh
-    deluge-gtk
-    vivaldi
-    vivaldi-ffmpeg-codecs
-    nextcloud-client
-    lazygit
-    xfce.tumbler
-    luajitPackages.luarocks
-    scc
-    xorg.xev
-    wev
-    pamixer
-    gimp
-    vesktop
-    obsidian
-    gitleaks
-    wf-recorder
-    pass
-    lua54Packages.luacheck
-    xournal
-    scrot
-    thefuck # Favorite package btw
-    exercism
-    tldr
-    protonvpn-cli
-    protonvpn-gui
-    spotdl
-    screenkey
-    aria2
-    foliate
-    cmus
-    cmusfm
-    zathura
-    vlc
-    qalculate-gtk
-    yazi
-    figlet
-    ripgrep
-    lutgen
-    fd
     spotify
-    sshfs
-    timg
-    flowtime
-    mousam
-    nixd
-    freetube
     neovide
-    xclip
-    wl-clipboard
-    amberol
-    anup
-    libreoffice
-    rofi-pass
-    lutris
-    wine64
-    # wineWow64Packages.waylandFull
-    # ente-auth
-    xwallpaper
-    xbindkeys
-    polybar
-    xwayland-satellite-unstable
-    cloudflare-warp
-    stremio
-    yt-dlp
-    ytfzf
-    nushell
-    carapace
-    localsend
-    gpodder
-    geany
-    waypaper
-    zoom-us
-    cliphist
-    #Awesome related
-    xorg.xprop
-    xorg.xinit
-    python312Packages.cmake
-    luajitPackages.lgi
-    luajit
-    xorg.xorgproto
-    xorg.libxcb
-    xcb-util-cursor
-    xorg.xcbutil
-    xorg.xcbutilkeysyms
-    cairo
-    pango
-    glib
-    haskellPackages.gio
+    greetd.tuigreet
   ];
 
   fonts = {
     packages = with pkgs; [
       noto-fonts-emoji
-      noto-fonts-cjk-sans
+      noto-fonts-cjk
       font-awesome
       symbola
       material-icons
-      victor-mono
-      iosevka
-      maple-mono
     ];
   };
 
@@ -332,9 +274,6 @@
     CYLISOS = "true";
   };
 
-  environment.pathsToLink = [ "/share/zsh" ];
-
-  # Extra Portal Configuration
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -349,76 +288,25 @@
     ];
   };
 
-  # Services to start
   services = {
-    cloudflare-warp.enable = true;
-    power-profiles-daemon.enable = false;
-    tlp = {
-      enable = true;
-      settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-        PLATFORM_PROFILE_ON_BAT = "low-power";
-        PLATFORM_PROFILE_ON_AC = "performance";
-        CPU_MIN_PERF_ON_AC = 0;
-        CPU_MAX_PERF_ON_AC = 100;
-        CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 20;
-        START_CHARGE_THRESH_BAT0 = 25; # 25 and bellow it starts to charge
-        STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
-      };
-    };
-    kanata = {
-      enable = true;
-      keyboards = {
-        main = {
-          config = ''
-            (defsrc
-              caps
-              ralt
-            )
-            (defvar
-              tap 200
-              hold 200
-            )
-            (defalias 
-              caps (tap-hold $tap $hold esc lctl)
-            )
-            (deflayer base
-              @caps
-              bspc
-            )
-          '';
-        };
-      };
-    };
-    tailscale.enable = true;
     xserver = {
-      enable = true;
-      displayManager.startx.enable = true;
-      desktopManager = {
-        xfce = {
-          enable = true;
-          enableXfwm = false;
-          noDesktop = true;
-        };
-      };
-      windowManager.i3.enable = true;
+      enable = false;
       xkb = {
-        layout = "us,jp";
-        options = "grp:win_space_toggle";
+        layout = "us";
         variant = "";
       };
     };
     greetd = {
       enable = true;
-      vt = 2;
+      vt = 3;
       settings = {
         default_session = {
+          # Wayland Desktop Manager is installed only for user ryan via home-manager!
           user = username;
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri";
+          # .wayland-session is a script generated by home-manager, which links to the current wayland compositor(sway/hyprland or others).
+          # with such a vendor-no-locking script, we can switch to another wayland compositor without modifying greetd's config here.
+          # command = "$HOME/.wayland-session"; # start a wayland session directly without a login manager
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
         };
       };
     };
@@ -430,9 +318,12 @@
     fstrim.enable = true;
     gvfs.enable = true;
     openssh.enable = true;
-    flatpak.enable = true;
+    flatpak.enable = false;
     printing = {
-      enable = false;
+      enable = true;
+      drivers = [
+        # pkgs.hplipWithPlugin 
+      ];
     };
     gnome.gnome-keyring.enable = true;
     avahi = {
@@ -442,21 +333,15 @@
     };
     ipp-usb.enable = true;
     syncthing = {
-      enable = true;
+      enable = false;
       user = "${username}";
       dataDir = "/home/${username}";
       configDir = "/home/${username}/.config/syncthing";
-      settings = {
-        folders = {
-          "/home/${username}/Documents/Main" = {
-            id = "obsidian";
-            devices = [ "mobile" ];
-          };
-        };
-      };
     };
     pipewire = {
       enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
       pulse.enable = true;
     };
     rpcbind.enable = false;
@@ -468,25 +353,16 @@
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     '';
   };
-  systemd.services.mpd.environment = {
-    XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.cylis.uid}";
-  };
   hardware.sane = {
     enable = true;
     extraBackends = [ pkgs.sane-airscan ];
     disabledDefaultBackends = [ "escl" ];
   };
 
-  # Bluetooth Support
-  hardware.bluetooth.enable = false;
-  hardware.bluetooth.powerOnBoot = false;
-  services.blueman.enable = false;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
-  powerManagement = {
-    powertop.enable = true;
-  };
-
-  # Security / Polkit
   security.rtkit.enable = true;
   security.polkit.enable = true;
   security.polkit.extraConfig = ''
@@ -505,13 +381,12 @@
       }
     })
   '';
-  security.pam.services.hyprlock = {
+  security.pam.services.swaylock = {
     text = ''
       auth include login
     '';
   };
 
-  # Optimization settings and garbage collection automation
   nix = {
     settings = {
       auto-optimise-store = true;
@@ -519,35 +394,32 @@
         "nix-command"
         "flakes"
       ];
-      substituters = [
-        "https://cache.garnix.io"
-        "https://ghostty.cachix.org"
-        "https://hyprland.cachix.org"
-      ];
-      trusted-public-keys = [
-        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-        "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      ];
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   };
 
-  # Virtualization / Containers
   virtualisation.libvirtd.enable = true;
-  # OpenGL
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
+
   hardware.graphics = {
     enable = true;
   };
+
   # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-  networking.firewall.allowedTCPPorts = [ 53317 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
   system.stateVersion = "23.11";
 }
