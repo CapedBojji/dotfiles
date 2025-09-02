@@ -63,6 +63,12 @@
     '')
   ];
 
+  programs.zsh.profileExtra = lib.mkMerge [
+    (lib.mkAfter ''
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    '')
+  ];
+
   home.packages = with pkgs; [
     eza
     fzf

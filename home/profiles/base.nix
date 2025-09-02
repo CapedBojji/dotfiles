@@ -1,5 +1,12 @@
 { lib, username, email, ... }:
 {
+    imports = [ ../options/nix/dots-registry.nix ];
+
+    my.dotsRegistry = {
+        enable = true;
+        source = "path";
+    };
+
     home = {
         stateVersion = lib.mkDefault "25.05";
     };

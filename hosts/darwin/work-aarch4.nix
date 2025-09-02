@@ -50,9 +50,7 @@ in
     homebrew = {
         enable = true;
         brews = [
-            {
-                name = "neovim";
-            }
+            "neovim"
         ];
     };
 }
