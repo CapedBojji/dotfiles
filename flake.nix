@@ -18,10 +18,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixcats = {
-      url = "github:CapedBojji/nixcats";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixcats = {
+    #   url = "path:/Users/blackbojji/Documents/nixcats";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -13,7 +13,7 @@ in
     stylix = {
         enable = true;
         autoEnable = true;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     };
     
     networking.hostName = "work-aarch4";
@@ -45,5 +45,14 @@ in
                 };
             };
         };
+    };
+
+    homebrew = {
+        enable = true;
+        brews = [
+            {
+                name = "neovim";
+            }
+        ];
     };
 }
