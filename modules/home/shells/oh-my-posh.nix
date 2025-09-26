@@ -1,6 +1,6 @@
 { self, ... }:
 let
-  settings = builtins.fromTOML (builtins.readFile (self + "/config/shells/oh-my-posh.toml"));
+  settings = builtins.fromTOML (builtins.readFile (self + "/.config/shells/oh-my-posh.toml"));
 in
 {
   programs.oh-my-posh = {

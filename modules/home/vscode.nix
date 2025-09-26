@@ -16,10 +16,17 @@ let
       "terminal.integrated.fontLigatures.enabled" = true;
       "editor.fontLigatures" = true;
       "explorer.confirmDelete" = false;
+      search.useIgnoreFiles = true;
+      search.exclude = {
+        "**/.direnv" = true;
+      };
     };
     extensions =
       # Open VSX channel
       (with exts.open-vsx; [
+        fill-labs.dependi
+        rust-lang.rust-analyzer
+        tauri-apps.tauri-vscode
         jnoortheen.nix-ide
         vscodevim.vim
         littensy.charmed-icons
@@ -27,12 +34,14 @@ let
       ++ (with exts.vscode-marketplace-release; [
         github.copilot-chat
         github.copilot
+      ])
+      ++ (with exts.vscode-marketplace; [
+          ms-python.python
+          ms-python.debugpy
       ]);
   };
-
 in
 {
-
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = false;
@@ -40,7 +49,7 @@ in
       default = {
         userSettings = base.userSettings;
         extensions = base.extensions ++ [
-
+          # Add any extra extensions here
         ];
         enableUpdateCheck = true;
         enableExtensionUpdateCheck = false;
@@ -48,3 +57,42 @@ in
     };
   };
 }
+
+       
+       
+         
+         
+           
+           
+         
+         
+         
+           
+           
+           
+         
+         
+         
+           
+           
+           
+         
+         
+         
+           
+           
+           
+         
+         
+         
+           
+           
+           
+         
+       
+       
+       
+     
+   
+ 
+

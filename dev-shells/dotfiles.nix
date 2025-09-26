@@ -8,6 +8,7 @@
     nixd
     # agenix-cli
     ragenix
+    codex
   ];
   
   enterShell = ''

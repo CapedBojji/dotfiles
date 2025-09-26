@@ -104,6 +104,9 @@
                 config
                 ;
             };
+            "tauri-react-deno" = import ./dev-shells/tauri/react/deno.nix {
+              inherit system pkgs;
+            };
           };
         };
     };
