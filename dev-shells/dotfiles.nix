@@ -1,6 +1,7 @@
-{ system, self', inputs', pkgs, config, ... }:
+{ system, pkgs, ... }:
 
 {
+  imports = [ ./common.nix ];
   packages = with pkgs; [
     git
     nixfmt-rfc-style
@@ -18,6 +19,7 @@
     echo "  build-flake [host]   -> build darwin flake config (defaults to \$(hostname -s))"
     echo "  apply-flake [host]   -> build & apply darwin flake config (defaults to \$(hostname -s))"
     echo "  encrypt <file> <out> -> encrypt a plaintext file into an .age secret (uses secrets.nix policy)"
+    echo "  chat [args]          -> open VS Code Chat and pass args (devenv scripts.chat)"
     echo
   '';
 

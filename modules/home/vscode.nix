@@ -20,6 +20,9 @@ let
       search.exclude = {
         "**/.direnv" = true;
       };
+      chat.tools.terminal.autoApprove = {
+        "git add" = true;
+      };
     };
     extensions =
       # Open VSX channel

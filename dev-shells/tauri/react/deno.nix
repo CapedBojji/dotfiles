@@ -1,6 +1,7 @@
 { system, pkgs, ... }:
 
 {
+  imports = [ ../../../common.nix ];
   # Use devenv's language integrations where possible
   languages.rust = {
     enable = true;
@@ -57,6 +58,7 @@
     echo "  tauri-dev           -> start Tauri dev (prefers tauri-cli via deno/npm runners)"
     echo "  tauri-build         -> build Tauri app"
     echo "  tauri-icon <img>    -> generate app icons from a square PNG/SVG"
+  echo "  chat [args]         -> open VS Code Chat and pass args (devenv scripts.chat)"
     echo
 
     # Per-project cargo dirs

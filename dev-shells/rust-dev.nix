@@ -1,6 +1,7 @@
-{ system, self', inputs', pkgs, config, ... }:
+{ system, pkgs, ... }:
 
 {
+  imports = [ ./common.nix ];
   packages = with pkgs; [
     # Rust toolchain
     rustc
@@ -42,6 +43,7 @@
     echo "  doc              -> build docs (no-deps)"
     echo "  watch            -> cargo watch -x check -x test"
     echo "  clean            -> cargo clean"
+  echo "  chat [args]      -> open VS Code Chat and pass args (devenv scripts.chat)"
     echo
 
     # Per-project cargo dirs (keeps global home clean)
