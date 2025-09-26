@@ -1,3 +1,4 @@
+{ ... }:
 {
   tauri = {
     path = ./rust/tauri;
