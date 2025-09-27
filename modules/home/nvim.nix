@@ -14,7 +14,7 @@
 
   home.activation.copyNvim = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
     set -euo pipefail
-    src="${self}/config/nvim"
+    src="${self}/.config/nvim"
     dst="${config.xdg.configHome}/nvim"   # ~/.config by default
 
     mkdir -p "$dst"
