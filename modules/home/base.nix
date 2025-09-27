@@ -13,4 +13,6 @@
     homeDirectory = "/Users/${username}";
     username = lib.mkDefault username;
   };
+
+  my.dotsRegistry.enable = true;
 }

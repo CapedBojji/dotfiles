@@ -9,6 +9,8 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:cachix/devenv-nixpkgs/rolling";
     devenv.url = "github:cachix/devenv";
+    # Reference your dotfiles repo for dev shells
+    dotfiles.url = "github:CapedBojji/dotfiles";
   };
 
   nixConfig = {
@@ -16,7 +18,7 @@
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = inputs@{ flake-parts, devenv-root, ... }:
+  outputs = inputs@{ flake-parts, devenv-root, dotfiles, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.devenv.flakeModule
@@ -25,8 +27,8 @@
 
       perSystem = { config, self', inputs', pkgs, system, ... }: {
         devenv.shells = {
-          # Reuse your repo's full Rust dev shell as the default shell for the template
-          default = import ../../../dev-shells/rust-dev.nix { inherit system self' inputs' pkgs config; };
+          # Use the rust dev shell from your dotfiles repo
+          default = dotfiles.devShells.${system}.rust-dev;
         };
       };
 

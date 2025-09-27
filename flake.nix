@@ -98,11 +98,11 @@
             dotfiles = import ./dev-shells/dotfiles.nix {
               inherit
                 system
-                self'
-                inputs'
                 pkgs
-                config
                 ;
+            };
+            "rust-dev" = import ./dev-shells/rust-dev.nix {
+              inherit system pkgs;
             };
             "tauri-react-deno" = import ./dev-shells/tauri/react/deno.nix {
               inherit system pkgs;

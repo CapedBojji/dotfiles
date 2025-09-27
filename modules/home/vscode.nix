@@ -33,6 +33,7 @@ let
         jnoortheen.nix-ide
         vscodevim.vim
         littensy.charmed-icons
+        tamasfe.even-better-toml
       ])
       ++ (with exts.vscode-marketplace-release; [
         github.copilot-chat

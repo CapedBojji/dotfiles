@@ -1,7 +1,7 @@
 { system, pkgs, ... }:
 
 {
-  imports = [ ../../../common.nix ];
+  imports = [ ../../common.nix ];
   # Use devenv's language integrations where possible
   languages.rust = {
     enable = true;
