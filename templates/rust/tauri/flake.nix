@@ -32,7 +32,6 @@
       let
         tauriParts = dotfiles.lib.tauriDevShellParts { inherit pkgs; };
       in {
-        devenv.root = devenv-root;
         devenv.shells = {
           default = {
             name = "tauri-project";

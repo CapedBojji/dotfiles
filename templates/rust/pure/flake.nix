@@ -29,7 +29,6 @@
       let
         rustParts = dotfiles.lib.rustDevShellParts { inherit pkgs; };
       in {
-        devenv.root = devenv-root;
         devenv.shells = {
           default = {
             name = "rust-project";
