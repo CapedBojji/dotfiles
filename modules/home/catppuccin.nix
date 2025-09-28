@@ -8,6 +8,6 @@
     firefox.enable = true;
     kitty.enable = true;
     nvim.enable = true;
-    vscode.enable = true;
+    vscode.profiles.default.enable = true;
   };
 }
