@@ -47,6 +47,25 @@
     export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig:$PKG_CONFIG_PATH"
   '';
 
+  # Common enterShell message for rust projects
+  enterShell = system: ''
+    echo "✨ Rust devshell for ${system}"
+    echo
+    echo "Available scripts:"
+    echo "  build            -> cargo build (debug)"
+    echo "  build-release    -> cargo build --release"
+    echo "  check            -> cargo check (all targets)"
+    echo "  test             -> run tests (uses nextest if available)"
+    echo "  fmt              -> check formatting"
+    echo "  fmt-fix          -> apply formatting"
+    echo "  clippy           -> clippy all targets/features, deny warnings"
+    echo "  doc              -> build docs (no-deps)"
+    echo "  watch            -> cargo watch -x check -x test"
+    echo "  clean            -> cargo clean"
+    echo "  chat [args]      -> open VS Code Chat and pass args"
+    echo
+  '';
+
   # All the cargo scripts from rust-dev shell
   scripts = {
     build.exec = ''

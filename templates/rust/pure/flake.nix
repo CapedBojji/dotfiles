@@ -40,25 +40,8 @@
             # Use rust scripts from dotfiles
             scripts = rustParts.scripts;
 
-            enterShell = ''
-              echo "✨ Rust devshell for ${system}"
-              echo
-              echo "Available scripts:"
-              echo "  build            -> cargo build (debug)"
-              echo "  build-release    -> cargo build --release"
-              echo "  check            -> cargo check (all targets)"
-              echo "  test             -> run tests (uses nextest if available)"
-              echo "  fmt              -> check formatting"
-              echo "  fmt-fix          -> apply formatting"
-              echo "  clippy           -> clippy all targets/features, deny warnings"
-              echo "  doc              -> build docs (no-deps)"
-              echo "  watch            -> cargo watch -x check -x test"
-              echo "  clean            -> cargo clean"
-              echo "  chat [args]      -> open VS Code Chat and pass args"
-              echo
-
-              ${rustParts.setupEnv}
-            '';
+            # Use common enterShell with environment setup
+            enterShell = rustParts.enterShell system + rustParts.setupEnv;
           };
         };
       };
