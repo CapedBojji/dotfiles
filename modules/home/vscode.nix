@@ -22,6 +22,7 @@ let
       };
       chat.tools.terminal.autoApprove = {
         "git add" = true;
+        "apply-flake" = true;
       };
     };
     extensions =
