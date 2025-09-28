@@ -29,6 +29,7 @@
       systems = [ "x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
 
       perSystem = { config, self', inputs', pkgs, system, ... }: {
+        devenv.root = devenv-root;
         devenv.shells = {
           # Use the tauri-react-deno dev shell from your dotfiles repo
           default = dotfiles.devShells.${system}.tauri-react-deno;
