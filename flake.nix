@@ -74,6 +74,8 @@
           default = import ./overlays { inherit inputs self; };
         };
 
+        lib = import ./lib { inherit (inputs.nixpkgs) lib; };
+
         templates = import ./templates { inherit self inputs; };
       };
 

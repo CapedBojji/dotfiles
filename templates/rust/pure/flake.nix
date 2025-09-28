@@ -25,11 +25,41 @@
       ];
       systems = [ "x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
 
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
+      perSystem = { config, self', inputs', pkgs, system, ... }: 
+      let
+        rustParts = dotfiles.lib.rustDevShellParts { inherit pkgs; };
+      in {
         devenv.root = devenv-root;
         devenv.shells = {
-          # Use the rust dev shell from your dotfiles repo
-          default = dotfiles.devShells.${system}.rust-dev;
+          default = {
+            name = "rust-project";
+
+            # Use rust packages from dotfiles
+            packages = rustParts.packages;
+
+            # Use rust scripts from dotfiles
+            scripts = rustParts.scripts;
+
+            enterShell = ''
+              echo "✨ Rust devshell for ${system}"
+              echo
+              echo "Available scripts:"
+              echo "  build            -> cargo build (debug)"
+              echo "  build-release    -> cargo build --release"
+              echo "  check            -> cargo check (all targets)"
+              echo "  test             -> run tests (uses nextest if available)"
+              echo "  fmt              -> check formatting"
+              echo "  fmt-fix          -> apply formatting"
+              echo "  clippy           -> clippy all targets/features, deny warnings"
+              echo "  doc              -> build docs (no-deps)"
+              echo "  watch            -> cargo watch -x check -x test"
+              echo "  clean            -> cargo clean"
+              echo "  chat [args]      -> open VS Code Chat and pass args"
+              echo
+
+              ${rustParts.setupEnv}
+            '';
+          };
         };
       };
 

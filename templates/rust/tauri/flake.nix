@@ -28,11 +28,49 @@
       ];
       systems = [ "x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
 
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
+      perSystem = { config, self', inputs', pkgs, system, ... }: 
+      let
+        tauriParts = dotfiles.lib.tauriDevShellParts { inherit pkgs; };
+      in {
         devenv.root = devenv-root;
         devenv.shells = {
-          # Use the tauri-react-deno dev shell from your dotfiles repo
-          default = dotfiles.devShells.${system}.tauri-react-deno;
+          default = {
+            name = "tauri-project";
+
+            # Enable language support
+            languages.rust.enable = true;
+            languages.deno.enable = true;
+
+            # Use tauri packages from dotfiles (includes rust + tauri extras)
+            packages = tauriParts.packages;
+
+            # Use tauri scripts from dotfiles (includes rust + tauri scripts)
+            scripts = tauriParts.scripts;
+
+            enterShell = ''
+              echo "✨ Tauri React (Deno) devshell for ${system}"
+              echo
+              echo "Available scripts:"
+              echo "  build               -> cargo build (debug)"
+              echo "  build-release       -> cargo build --release"
+              echo "  check               -> cargo check (all targets)"
+              echo "  test                -> run tests (uses nextest if available)"
+              echo "  fmt                 -> check formatting"
+              echo "  fmt-fix             -> apply formatting"
+              echo "  clippy              -> clippy all targets/features, deny warnings"
+              echo "  doc                 -> build docs (no-deps)"
+              echo "  watch               -> cargo watch -x check -x test"
+              echo "  clean               -> cargo clean"
+              echo "  frontend-install    -> install frontend deps (pnpm|bun|npm if present; Deno uses cache/import maps)"
+              echo "  tauri-dev           -> start Tauri dev (prefers tauri-cli via deno/npm runners)"
+              echo "  tauri-build         -> build Tauri app"
+              echo "  tauri-icon <img>    -> generate app icons from a square PNG/SVG"
+              echo "  chat [args]         -> open VS Code Chat and pass args"
+              echo
+
+              ${tauriParts.setupEnv}
+            '';
+          };
         };
       };
       flake = {
