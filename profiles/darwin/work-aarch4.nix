@@ -97,5 +97,9 @@ in
 
   homebrew = {
     enable = true;
+    casks = [
+      "roblox"
+      "robloxstudio"
+    ];
   };
 }
