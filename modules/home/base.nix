@@ -1,10 +1,14 @@
-{ lib, username, ... }:
+{ lib, username, pkgs, ... }:
 {
   imports = [
     ./dots-registry.nix
   ];
 
   programs.command-not-found.enable = true;
+
+  home.packages = with pkgs; [
+    discord
+  ];
   
   xdg.enable = true;
 
