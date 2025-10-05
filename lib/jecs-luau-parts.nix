@@ -1,10 +1,6 @@
-{ pkgs, _pkgs ? null }:
-let
-  # allow passing an overridden pkgs (from templates) so custom overlays apply
-  pkgsForUse = if _pkgs == null then pkgs else _pkgs;
-in
+{ pkgs }:
 {
-  packages = with pkgsForUse; [
+  packages = with pkgs; [
     luau
   ];
 

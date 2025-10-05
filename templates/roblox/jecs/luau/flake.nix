@@ -27,7 +27,7 @@
           config.allowUnfree = true;
         };
 
-        luauParts = dotfiles.lib.jecsLuauParts { inherit pkgs _pkgs; };
+        luauParts = dotfiles.lib.jecsLuauParts { pkgs = _pkgs; };
       in {
         devenv.shells = {
           default = {
