@@ -100,6 +100,7 @@ in
     casks = [
       "roblox"
       "robloxstudio"
+      "anki"
     ];
   };
 }

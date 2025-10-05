@@ -8,4 +8,8 @@
     path = ./rust/pure;
     description = "Pure Rust project template (devenv shells: default, rust)";
   };
+  roblox = {
+    path = ./roblox;
+    description = "Roblox game development template with pesde, rojo, darklua, and stylua";
+  };
 }
