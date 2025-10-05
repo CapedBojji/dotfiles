@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, cmake, ninja, pkgconf ? null, pkgconfig ? null, openssl, zlib, lib, makeWrapper ? null }:
+{ stdenv, fetchFromGitHub, cmake, ninja, pkgconf ? null, pkgconfig ? null, openssl, zlib, lib }:
 let
   myPkgConfig = if pkgconf != null then pkgconf else pkgconfig;
 in
@@ -39,6 +39,6 @@ stdenv.mkDerivation rec {
     description = "Luau language runtime and tooling (built from upstream)";
     homepage = "https://github.com/luau-lang/luau";
     license = licenses.mit;
-    maintainers = with maintainers; [ ];
+    maintainers = [];
   };
 }
