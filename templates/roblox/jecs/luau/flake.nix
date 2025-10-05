@@ -9,7 +9,11 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:cachix/devenv-nixpkgs/rolling";
     devenv.url = "github:cachix/devenv";
-    dotfiles.url = "github:CapedBojji/dotfiles";
+    # Use the local dotfiles repo so the template reflects the working tree
+    dotfiles = {
+      url = "path:../../../../"; # relative path from template to repo root
+      flake = true;
+    };
   };
 
   outputs = inputs@{ flake-parts, devenv-root, dotfiles, ... }:
