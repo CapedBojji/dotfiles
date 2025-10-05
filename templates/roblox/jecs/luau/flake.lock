@@ -324,11 +324,11 @@
         "stylix": "stylix"
       },
       "locked": {
-        "lastModified": 1759706011,
-        "narHash": "sha256-ZouZoKr9eWRhfGMPvte5TeITDPd9niOXq8Zr2eAvZUg=",
+        "lastModified": 1759706688,
+        "narHash": "sha256-t2E6ikhWPyqy7n8xuaPrCqH00y2sA7ZW3JbY/dN5s5k=",
         "owner": "CapedBojji",
         "repo": "dotfiles",
-        "rev": "c96b33930c215c49c803b306cbee9f85a5e53a46",
+        "rev": "c661c94be94940dab2e31d46c258bda2963c448a",
         "type": "github"
       },
       "original": {
