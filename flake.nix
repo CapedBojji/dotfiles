@@ -106,6 +106,9 @@
             rust-dev = import ./dev-shells/rust-dev.nix {
               inherit system pkgs;
             };
+            roblox-luau = import ./dev-shells/roblox-luau.nix {
+              inherit system pkgs;
+            };
             tauri-react-deno = import ./dev-shells/tauri/react/deno.nix {
               inherit system pkgs;
             };
