@@ -7,9 +7,9 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "luau-lang";
     repo = "luau";
-    rev = "main"; # pin to a release tag for reproducible builds
-    # TODO: replace the sha256 below with the real value after a first build
-    sha256 = "0000000000000000000000000000000000000000000000000000";
+    rev = "bb3956547affc1af7b7d196f96756895255dd05d";
+    # pinned to specific commit
+    sha256 = "0106wd28pffkfi7284dh04sck3ba38f5ivwylix2klaaf2ybrmky";
   };
 
   nativeBuildInputs = [ cmake ninja pkgconfig ];
