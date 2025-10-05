@@ -17,8 +17,6 @@ in
     echo "✨ JECS Luau devshell for ${system}"
     echo
     echo "Available scripts:"
-    echo "  fmt       -> format/compile checks (using luau-compile)"
-    echo "  analyze   -> run luau-analyze if available"
     echo "  run <src> -> run a Luau script"
     echo
   '';
