@@ -1,6 +1,9 @@
-{ pkgs }:
+{ pkgs, _pkgs ? null }:
 {
-  packages = with pkgs; [
+  # allow passing an overridden pkgs (from templates) so custom overlays apply
+  pkgsForUse = if _pkgs == null then pkgs else _pkgs;
+
+  packages = with pkgsForUse; [
     luau
     luau-lsp
     luau-compile

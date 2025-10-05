@@ -19,7 +19,15 @@
 
       perSystem = { config, self', inputs', pkgs, system, ... }:
       let
-        luauParts = dotfiles.lib.jecsLuauParts { inherit pkgs; };
+        # Make sure this template's pkgs uses the overlays exported by the
+        # dotfiles flake so the custom `luau` package is visible.
+        _pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = [ dotfiles.overlays.default ];
+          config.allowUnfree = true;
+        };
+
+        luauParts = dotfiles.lib.jecsLuauParts { inherit pkgs _pkgs; };
       in {
         devenv.shells = {
           default = {
