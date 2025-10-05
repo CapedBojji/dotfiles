@@ -3,6 +3,6 @@ final: prev: let
   pkgsSrc = prev; # we will add packages to the overlay
 in {
   luau = prev.callPackage ../pkgs/luau/default.nix {
-    inherit (prev) stdenv fetchFromGitHub cmake ninja "pkg-config" pkgconf openssl zlib lib;
+    inherit (prev) stdenv fetchFromGitHub cmake ninja pkg-config pkgconf openssl zlib lib;
   };
 }

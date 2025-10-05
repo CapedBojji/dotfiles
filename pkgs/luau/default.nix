@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, cmake, ninja, pkgconfig, openssl, zlib, lib, makeWrapper ? null }:
+{ stdenv, fetchFromGitHub, cmake, ninja, pkgconf, openssl, zlib, lib, makeWrapper ? null }:
 
 stdenv.mkDerivation rec {
   pname = "luau";
@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
     sha256 = "0106wd28pffkfi7284dh04sck3ba38f5ivwylix2klaaf2ybrmky";
   };
 
-  nativeBuildInputs = [ cmake ninja pkgconfig ];
+  nativeBuildInputs = [ cmake ninja pkgconf ];
   buildInputs = [ openssl zlib ];
 
   cmakeFlags = [ "-DLUAU_BUILD_TESTS=OFF" "-DCMAKE_BUILD_TYPE=Release" ];
