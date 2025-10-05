@@ -1,5 +1,8 @@
 # Override or tweak existing packages here
-final: prev: {
-  # Example: modify firefox (just a placeholder)
-  # firefox = prev.firefox.override { enableTridactylNative = true; };
+final: prev: let
+  pkgsSrc = prev; # we will add packages to the overlay
+in {
+  luau = prev.callPackage ../pkgs/luau/default.nix {
+    inherit (prev) stdenv fetchFromGitHub cmake ninja pkgconfig openssl zlib lib;
+  };
 }

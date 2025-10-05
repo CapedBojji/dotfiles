@@ -11,4 +11,7 @@
 
   # Tauri devshell components
   tauriDevShellParts = import ./tauri-devshell-parts.nix;
+
+  # JECS Luau devshell components
+  jecsLuauParts = import ./jecs-luau-parts.nix;
 }
