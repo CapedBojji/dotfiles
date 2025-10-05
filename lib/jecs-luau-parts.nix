@@ -7,7 +7,7 @@ in
   packages = with pkgsForUse; [
     luau
     luau-lsp
-    luau-compile
+    luau-analyze
   ];
 
   setupEnv = ''
@@ -29,11 +29,14 @@ in
     fmt.exec = ''
       #!/usr/bin/env bash
       set -euo pipefail
-      if ! command -v luau-compile >/dev/null 2>&1; then
-        echo "luau-compile not found in PATH" >&2
+      if command -v luau-compile >/dev/null 2>&1; then
+        luau-compile --check .
+      elif command -v luau-analyze >/dev/null 2>&1; then
+        luau-analyze .
+      else
+        echo "neither luau-compile nor luau-analyze found in PATH" >&2
         exit 1
       fi
-      luau-compile --check .
     '';
 
     analyze.exec = ''
