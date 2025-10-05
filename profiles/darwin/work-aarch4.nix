@@ -51,7 +51,6 @@ in
     nil
     alejandra
     neovim
-    luau
     ragenix
     pokemon-colorscripts
   ];
