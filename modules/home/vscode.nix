@@ -24,7 +24,6 @@ let
         "git add" = true;
         "git commit" = true;
         "apply-flake" = true;
-        "git push" = true;
       };
     };
     extensions =
