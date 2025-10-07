@@ -36,6 +36,7 @@ let
         vscodevim.vim
         littensy.charmed-icons
         tamasfe.even-better-toml
+        johnnymorganz.luau-lsp
       ])
       ++ (with exts.vscode-marketplace-release; [
         github.copilot-chat

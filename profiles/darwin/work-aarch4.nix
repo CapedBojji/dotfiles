@@ -102,5 +102,8 @@ in
       "robloxstudio"
       "anki"
     ];
+    brews = [
+      "wally"
+    ];
   };
 }

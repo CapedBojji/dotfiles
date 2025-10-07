@@ -1,0 +1,25 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rbxtsc",
+    "watch": "rbxtsc -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.17.1",
+  "devDependencies": {
+    "@rbxts/compiler-types": "3.0.0-types.0",
+    "@rbxts/types": "^1.0.884",
+    "roblox-ts": "^3.0.0",
+    "typescript": "^5.9.3",
+    "rbxts-transformer-jecs": "^0.0.6",
+    "@rbxts/planck": "path:./node_packages/rbxts-planck-1.0.0"
+  },
+  "dependencies": {
+    "@rbxts/jecs": "^0.9.0"
+  }
+}
