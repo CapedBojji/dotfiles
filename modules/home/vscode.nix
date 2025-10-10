@@ -19,6 +19,7 @@ let
       search.useIgnoreFiles = true;
       search.exclude = {
         "**/.direnv" = true;
+        "**/results" = true;
       };
       chat.tools.terminal.autoApprove = {
         "git add" = true;
@@ -58,8 +59,8 @@ in
         extensions = base.extensions ++ [
           # Add any extra extensions here
         ];
-        enableUpdateCheck = true;
-        enableExtensionUpdateCheck = false;
+        # enableUpdateCheck = true;
+        # enableExtensionUpdateCheck = false;
       };
     };
   };
