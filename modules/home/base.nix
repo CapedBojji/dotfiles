@@ -8,6 +8,10 @@
 
   home.packages = with pkgs; [
     discord
+    img2art
+    stable.hello
+    ascii-image-converter
+    lolcat
   ];
   
   xdg.enable = true;

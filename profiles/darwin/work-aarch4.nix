@@ -64,6 +64,9 @@ in
   nixpkgs = {
     overlays = [
       inputs.nix-vscode-extensions.overlays.default
+      # also include this repository's overlay so system and home-manager
+      # evaluations see our custom packages (like img2art)
+      self.overlays.default
     ];
     hostPlatform = "aarch64-darwin";
     config.allowUnfree = true;

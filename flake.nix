@@ -32,28 +32,26 @@
     catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs =
-    inputs@{
-      self,
-      devenv,
-      flake-parts,
-      darwin,
-      devenv-root,
-      ...
-    }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "aarch64-darwin" ];
+  outputs = inputs @ {
+    self,
+    devenv,
+    flake-parts,
+    darwin,
+    devenv-root,
+    ...
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = ["aarch64-darwin"];
 
-      imports = [ devenv.flakeModule ];
+      imports = [devenv.flakeModule];
 
       flake = {
         darwinConfigurations = {
-          work-aarch4 =
-            let
-              system = "aarch64-darwin";
-              username = "blackbojji";
-              my-lib = import ./lib { inherit (inputs.nixpkgs) lib; };
-            in
+          work-aarch4 = let
+            system = "aarch64-darwin";
+            username = "blackbojji";
+            my-lib = import ./lib {inherit (inputs.nixpkgs) lib;};
+          in
             darwin.lib.darwinSystem {
               inherit system;
               specialArgs = {
@@ -71,49 +69,31 @@
         };
 
         overlays = {
-          default = import ./overlays { inherit inputs self; };
+          default = import ./overlays {inherit inputs self;};
         };
 
-        lib = import ./lib { inherit (inputs.nixpkgs) lib; };
+        lib = import ./lib {inherit (inputs.nixpkgs) lib;};
 
-        templates = import ./templates { inherit self inputs; };
+        templates = import ./templates {inherit self inputs;};
       };
 
-      perSystem =
-        {
-          system,
-          self',
-          inputs',
-          pkgs,
-          config,
-          lib,
-          ...
-        }:
-        {
-          _module.args.pkgs = import inputs.nixpkgs {
-            inherit system;
-            overlays = [ self.overlays.default ];
-            config.allowUnfree = true;
-          };
+      perSystem = {
+        system,
+        self',
+        inputs',
+        pkgs,
+        config,
+        lib,
+        ...
+      }: {
+        # _module.args.pkgs = import inputs.nixpkgs {
+        #   inherit system;
+        #   overlays = [self.overlays.default];
+        #   config.allowUnfree = true;
+        # };
 
-          devenv.shells = {
-            dotfiles = import ./dev-shells/dotfiles.nix {
-              inherit
-                system
-                pkgs
-                ;
-            };
-            rust-dev = import ./dev-shells/rust-dev.nix {
-              inherit system pkgs;
-            };
-            roblox-luau = import ./dev-shells/roblox-luau.nix {
-              inherit system pkgs;
-            };
-            tauri-react-deno = import ./dev-shells/tauri/react/deno.nix {
-              inherit system pkgs;
-            };
-          };
-        };
+        devenv.shells = import ./dev-shells {inherit pkgs lib self inputs system;};
+      };
     };
 
   nixConfig = {
