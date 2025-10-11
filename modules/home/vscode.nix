@@ -44,6 +44,8 @@ let
         github.copilot
       ])
       ++ (with exts.vscode-marketplace; [
+          mkhl.direnv
+          dbaeumer.vscode-eslint
           ms-python.python
           ms-python.debugpy
       ]);
@@ -59,8 +61,8 @@ in
         extensions = base.extensions ++ [
           # Add any extra extensions here
         ];
-        # enableUpdateCheck = true;
-        # enableExtensionUpdateCheck = false;
+        enableUpdateCheck = false;
+        enableExtensionUpdateCheck = false;
       };
     };
   };
